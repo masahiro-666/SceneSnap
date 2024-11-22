@@ -1,0 +1,165 @@
+body {
+    background: linear-gradient(to left, rgba(96, 250, 165, 0.8), rgba(147, 253, 197, 0.75), rgba(191, 254, 219, 1));
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+@media (min-width: 768px) {
+    /* Tablet styles */
+    body {
+        background-image: url("backgroundwrap.png");
+        background-repeat: repeat;
+        background-size: contain;
+        background-color: #b5ffd6b5;
+        font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    .product {
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 10px, rgba(0, 0, 0, 0.22) 0px 5px 12px;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 9px; /* Only showing the x-axis scrollbar */
+    height: 0px; /* Custom height for the x-axis scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    height: 100px;
+    background: #f1f1f100; 
+    border-radius: 16px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #5AFFA2;
+    border-radius: 16px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #47CC8A;
+}
+
+.ant-table-body {
+    scrollbar-width: auto;
+    scrollbar-color: auto;
+}
+
+.ant-table-body::-webkit-scrollbar {
+    width: 4px;
+}
+
+.ant-table-body::-webkit-scrollbar-track {
+    background-color: #e4e4e400;
+}
+
+.ant-table-body::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    background-color: #5AFFA2;
+}
+
+.ant-table-body::-webkit-scrollbar-thumb:hover {
+    border-radius: 6px;
+    background-color: #47CC8A;
+}
+
+.custom-modal .ant-modal-content {
+    background-color: #f0f0f0; /* Customize modal background */
+}
+
+.custom-modal .ant-modal-header {
+    background-color: #47c26c; /* Customize modal header background */
+    color: white; /* Customize modal header text color */
+}
+
+.custom-modal .ant-modal-title {
+    color: white; /* Customize modal title text color */
+}
+
+.custom-modal .ant-modal-footer {
+    border-top: none; /* Remove the footer border */
+} 
+
+li{
+    list-style-type: none;
+}
+
+button:hover{
+    cursor: pointer;
+}
+
+.page-container{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1200px;
+}
+
+.navbar-container{
+    width: 100%;
+    font-size: 20px;
+    color: black;
+    background: rgb(160, 255, 222);
+    background: linear-gradient(90deg, rgba(139, 250, 211, 0.872) 0%, rgba(141, 244, 208, 0.537) 100%);
+    height: 100px;
+    box-shadow: rgba(50, 50, 93, 0.27) 0px 13px 27px -5px, rgba(0, 0, 0, 0.1) 0px 8px 16px -8px;
+}
+
+.navbar-content{
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1300px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar-left{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar-left img{
+    width: 170px;
+    margin-top: 10%;
+}
+
+.navbar-logo{
+    color: black;
+}
+
+.navbar-right{
+    width: 580px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
+a {
+    color: #5AFFA2;
+    text-decoration: none;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.navbar-section {
+    flex-shrink: 0;
+}
+
+.page-container {
+    flex-grow: 1;
+}
+
+.footer-container {
+    flex-shrink: 0;
+}
