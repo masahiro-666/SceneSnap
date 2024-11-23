@@ -15,13 +15,26 @@ import {
 import { doc, setDoc, addDoc, collection, serverTimestamp } from "firebase/firestore"; 
 
 // Register a new user with email and password
-export const doSignUpWithEmailAndPassword = async (email, password, username) => {
+export const doSignUpWithEmailAndPassword = async (email, password, username, name, surname, phoneNumber) => {
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
+    const userid = userCredential.user.uid;
+
     console.log("asdasd", userCredential.user.uid);
-    console.log("asdasd:",{ useruid, username, email });
-    // const response = await axios.post(`${baseURL}/users/addNewUser/${user.uid}/${username}/${email}/?profilePicUrl=https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vecteezy.com%2Fvector-art%2F5005788-user-icon-in-trendy-flat-style-isolated-on-grey-background-user-symbol-for-your-web-site-design-logo-app-ui-vector-illustration-eps10&psig=AOvVaw1CEQsLjNo4rMgMjOBfMTmr&ust=1726804979399000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCOCqlf6PzogDFQAAAAAdAAAAABAE`);
+    console.log("asdasd:",{userid ,username, name, surname, email, phoneNumber });
+    // const response = await axios.post(`${baseURL}/customer/addNewCustomer/${user.uid}/${username}/${name}/${surname}/${email}/${phoneNumber}`);
+    const response = await axios.post(`${baseURL}/customer/addNewCustomer`, null, {
+      params: {
+        cs_id: userid,
+        cs_username: username,
+        cs_name: name,
+        cs_surname: surname,
+        cs_email: email,
+        cs_phone_number: phoneNumber,
+      },
+    });
+    await signOut(auth);
     return userCredential;
   } catch (error) {
     console.error("Error signing up with email and password:", error);

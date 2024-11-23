@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../components/styles/styles.css";
-import logo from "../components/mockups/logo.png";
-import { Link, Navigate } from "react-router-dom";
+import logo from "../components/mockups/logos/logo15.png";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { auth } from "../firebaseConfig"; // Import Firebase auth
 import { doSignInWithEmailAndPassword, doSignInWithGoogle } from '../firebase/auth';
 import { useAuth } from '../context/authContext';
@@ -15,6 +15,7 @@ function Signin() {
   const [errorMessage, setErrorMessage] = useState(""); // State for error message
   const [isSigningIn, setIsSigningIn] = useState(false);
   const { userLoggedIn } = useAuth();
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword); // Toggle password visibility
@@ -27,6 +28,7 @@ function Signin() {
       setIsSigningIn(true);
       try {
         await doSignInWithEmailAndPassword(email, password);
+        navigate('/home'); // Redirect to /home after successful sign-in
       } catch (error) {
         setErrorMessage(error.message);
         setIsSigningIn(false);
@@ -36,12 +38,11 @@ function Signin() {
 
   return (
     <>
-      {userLoggedIn && <Navigate to="/home" replace={true} />}
-      <div className="h-full">
       {/* {userLoggedIn && <Navigate to="/home" replace={true} />} */}
+      <div className="h-full">
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-            <img alt="LOGO" src={logo} className="mx-auto h-10 w-auto" />
+            <img alt="LOGO" src={logo} className="mx-auto h-20 w-auto" />
             <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-white">
               Sign in to your account
             </h2>
@@ -115,7 +116,7 @@ function Signin() {
               </div>
 
               {errorMessage && (
-                <div className="text-red-500 text-sm text-center">{errorMessage}</div> // Display error message
+                <div className="text-red-500 text-sm text-center">{errorMessage}</div>
               )}
 
               <div className="flex flex-col items-center space-y-4">

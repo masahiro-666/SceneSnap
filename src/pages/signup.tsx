@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "../components/styles/styles.css";
-import logo from "../components/mockups/logo.png";
+import logo from "../components/mockups/logos/logo15.png";
 import { Link, useNavigate } from "react-router-dom";
-import { doSignUpWithEmailAndPassword } from "../firebase/auth"
+import { doSignUpWithEmailAndPassword } from "../firebase/auth";
 import { auth } from "../firebaseConfig"; // Import Firebase auth
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
@@ -10,15 +10,15 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 function Signup() {
   const [showPassword, setShowPassword] = useState(false); // State for toggling password visibility
   const [showConfirmPassword, setShowConfirmPassword] = useState(false); // State for confirm password visibility
-  const [fullName, setFullName] = useState(""); // State for full name input
+  const [username, setUsername] = useState(""); // State for username input
+  const [name, setName] = useState(""); // State for name input
+  const [surname, setSurname] = useState(""); // State for surname input
   const [email, setEmail] = useState(""); // State for email input
+  const [phoneNumber, setPhoneNumber] = useState(""); // State for phone number input
   const [password, setPassword] = useState(""); // State for password input
   const [confirmPassword, setConfirmPassword] = useState(""); // State for confirm password input
   const [errorMessage, setErrorMessage] = useState(""); // State for error message
   const navigate = useNavigate(); // Navigate to other pages after successful sign-up
-  const [error, setError] = useState(null);
-  const [open, setOpen] = useState(false);
-  const [verificationCode, setVerificationCode] = useState('');
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword); // Toggle password visibility
@@ -28,37 +28,49 @@ function Signup() {
     setShowConfirmPassword(!showConfirmPassword); // Toggle confirm password visibility
   };
 
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
+  const handleNameChange = (e) => {
+    const value = e.target.value;
+    if (/^[a-zA-Z]*$/.test(value)) {
+      setName(value); // Allow only letters
+    }
+  };
 
-//     if (password !== confirmPassword) {
-//       setErrorMessage("Passwords do not match!");
-//       return;
-//     }
+  const handleSurnameChange = (e) => {
+    const value = e.target.value;
+    if (/^[a-zA-Z]*$/.test(value)) {
+      setSurname(value); // Allow only letters
+    }
+  };
 
-//     try {
-//       // Create a new user using Firebase Authentication
-//       await createUserWithEmailAndPassword(auth, email, password);
-//       // Optionally, you can store additional user details like fullName in Firebase Firestore
-//       navigate("/signin"); // Redirect to sign-in page after successful registration
-//     } catch (error) {
-//       setErrorMessage(error.message); // Set error message for failed sign-up
-//     }
-//   };
+  const handlePhoneNumberChange = (e) => {
+    const value = e.target.value;
+    if (/^\d*$/.test(value)) {
+      setPhoneNumber(value); // Allow only numbers
+    }
+  };
 
-const handleSubmit = async (event: any) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+
+    if (password.length < 6) {
+      setErrorMessage("Password must be at least 6 characters long!");
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setErrorMessage("Passwords do not match!");
+      return;
+    }
+
     try {
-      const userCredential = await doSignUpWithEmailAndPassword(email, password, name);
-      console.log("Signed up successfully:", userCredential);
-      
-      
-      // Send verification email and code
-      await setVerificationCode(email);
-      
-      setOpen(true);
+      // Sign up the user using Firebase Authentication
+      const userCredential = await doSignUpWithEmailAndPassword(email, password, username, name, surname, phoneNumber);
+      console.log("Signed up successfully:");
+
+      // After successful sign up, navigate to the sign-in page
+      navigate("/signin");
     } catch (error) {
-      setError(error.message);
+      setErrorMessage(error.message+''); // Set error message for failed sign-up
       console.error("Error signing up:", error);
     }
   };
@@ -67,7 +79,7 @@ const handleSubmit = async (event: any) => {
     <div className="h-full w-full bg-[#212121]">
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <img alt="LOGO" src={logo} className="mx-auto h-10 w-auto" />
+          <img alt="LOGO" src={logo} className="mx-auto h-20 w-auto" />
           <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-white">
             Sign up for a new account
           </h2>
@@ -77,20 +89,62 @@ const handleSubmit = async (event: any) => {
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label
-                htmlFor="fullName"
+                htmlFor="username"
                 className="block text-sm font-medium text-white"
               >
-                Full Name
+                Username
               </label>
               <div className="mt-2">
                 <input
-                  id="fullName"
-                  name="fullName"
+                  id="username"
+                  name="username"
+                  type="text"
+                  required
+                  autoComplete="username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)} // Bind fullName state
+                  className="custom-input"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label
+                htmlFor="name"
+                className="block text-sm font-medium text-white"
+              >
+                Name
+              </label>
+              <div className="mt-2">
+                <input
+                  id="name"
+                  name="name"
                   type="text"
                   required
                   autoComplete="name"
-                  value={fullName}
-                  onChange={(e) => setFullName(e.target.value)} // Bind fullName state
+                  value={name}
+                  onChange={handleNameChange}
+                  className="custom-input"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label
+                htmlFor="surname"
+                className="block text-sm font-medium text-white"
+              >
+                Surname
+              </label>
+              <div className="mt-2">
+                <input
+                  id="surname"
+                  name="surname"
+                  type="text"
+                  required
+                  autoComplete="surname"
+                  value={surname}
+                  onChange={handleSurnameChange}
                   className="custom-input"
                 />
               </div>
@@ -111,7 +165,28 @@ const handleSubmit = async (event: any) => {
                   required
                   autoComplete="email"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)} // Bind email state
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="custom-input"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label
+                htmlFor="phoneNumber"
+                className="block text-sm font-medium text-white"
+              >
+                Phone Number
+              </label>
+              <div className="mt-2">
+                <input
+                  id="phoneNumber"
+                  name="phoneNumber"
+                  type="phoneNumber"
+                  required
+                  autoComplete="phoneNumber"
+                  value={phoneNumber}
+                  onChange={handlePhoneNumberChange}
                   className="custom-input"
                 />
               </div>
