@@ -1,20 +1,20 @@
-import { useState } from 'react';
+import { useState } from "react";
 import "../components/styles/styles.css";
 import logo from "../components/mockups/logo.png";
-import { Link } from 'react-router-dom';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { Link } from "react-router-dom";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 function signup() {
-  const [showPassword, setShowPassword] = useState(false);  // State for toggling password visibility
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);  // State for confirm password visibility
+  const [showPassword, setShowPassword] = useState(false); // State for toggling password visibility
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false); // State for confirm password visibility
 
   const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);  // Toggle password visibility
+    setShowPassword(!showPassword); // Toggle password visibility
   };
 
   const toggleConfirmPasswordVisibility = () => {
-    setShowConfirmPassword(!showConfirmPassword);  // Toggle confirm password visibility
+    setShowConfirmPassword(!showConfirmPassword); // Toggle confirm password visibility
   };
 
   return (
@@ -29,9 +29,11 @@ function signup() {
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <form action="#" method="POST" className="space-y-6">
-            
             <div>
-              <label htmlFor="fullName" className="block text-sm font-medium text-white">
+              <label
+                htmlFor="fullName"
+                className="block text-sm font-medium text-white"
+              >
                 Full Name
               </label>
               <div className="mt-2">
@@ -47,7 +49,10 @@ function signup() {
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-white">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-white"
+              >
                 Email
               </label>
               <div className="mt-2">
@@ -63,14 +68,17 @@ function signup() {
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-white">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-white"
+              >
                 Password
               </label>
               <div className="relative mt-2">
                 <input
                   id="password"
                   name="password"
-                  type={showPassword ? 'text' : 'password'}
+                  type={showPassword ? "text" : "password"}
                   required
                   autoComplete="new-password"
                   className="custom-input"
@@ -80,24 +88,23 @@ function signup() {
                   onClick={togglePasswordVisibility}
                   className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 focus:outline-none"
                 >
-                  {showPassword ? (
-                    <VisibilityIcon/>
-                  ) : (
-                    <VisibilityOffIcon/>
-                  )}
+                  {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
                 </button>
               </div>
             </div>
 
             <div>
-              <label htmlFor="confirmPassword" className="block text-sm font-medium text-white">
+              <label
+                htmlFor="confirmPassword"
+                className="block text-sm font-medium text-white"
+              >
                 Confirm Password
               </label>
               <div className="relative mt-2">
                 <input
                   id="confirmPassword"
                   name="confirmPassword"
-                  type={showPassword ? 'text' : 'password'}
+                  type={showPassword ? "text" : "password"}
                   required
                   autoComplete="new-password"
                   className="custom-input"
@@ -107,20 +114,13 @@ function signup() {
                   onClick={togglePasswordVisibility}
                   className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 focus:outline-none"
                 >
-                  {showPassword ? (
-                    <VisibilityIcon/>
-                  ) : (
-                    <VisibilityOffIcon/>
-                  )}
+                  {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
                 </button>
               </div>
             </div>
 
             <div className="flex justify-center">
-              <button
-                type="submit"
-                className="custom-submit-btn"
-              >
+              <button type="submit" className="custom-submit-btn">
                 SIGN UP
               </button>
             </div>
