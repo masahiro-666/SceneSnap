@@ -1,5 +1,6 @@
 import Navbar from "../components/navbar"
 import Footer from "../components/footer"
+import Movies from "../components/movies"
 
 function home(){
     return(
@@ -8,9 +9,8 @@ function home(){
                 <div className="max-md:hidden">
                     <Navbar/>
                 </div>
-                <div className="page-container max-md:hidden">
-                    <div className="bg-white rounded-t-3xl px-5 mt-1 py-1 md:hidden pb-60 h-full relative">
-                    </div>
+                <div className="bg-white rounded-t-3xl px-5 mt-1 py-1 md:hidden pb-60 h-full relative">
+                    <Movies/>
                 </div>
                 <div className="max-md:hidden">
                     <Footer/>

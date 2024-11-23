@@ -9,7 +9,7 @@ body {
         background-image: url("backgroundwrap.png");
         background-repeat: repeat;
         background-size: contain;
-        background-color: #b5ffd6b5;
+        background-color: #000000;
         font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     }
     .product {
@@ -85,14 +85,14 @@ button:hover{
     cursor: pointer;
 }
 
-.page-container{
+/* .page-container{
     align-items: center;
     display: flex;
     flex-direction: column;
     margin-left: auto;
     margin-right: auto;
     max-width: 1200px;
-}
+} */
 
 .navbar-container{
     width: 100%;
@@ -162,4 +162,25 @@ a {
 
 .footer-container {
     flex-shrink: 0;
+}
+
+.products-container{
+    width: 100%;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+}
+
+.custom-input {
+    @apply block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald-500 sm:text-sm/6;
+  }
+
+.custom-submit-btn{
+    @apply w-80 justify-center rounded-3xl bg-white px-5 py-1.5 text-sm/6 font-semibold text-black shadow-sm hover:bg-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600;
+}
+
+.custom-outline-btn{
+    @apply w-80 justify-center rounded-3xl border-2 border-white bg-transparent px-5 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:text-emerald-500 hover:border-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-500;
+
 }
