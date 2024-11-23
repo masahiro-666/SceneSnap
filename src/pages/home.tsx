@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
+import Movies from "../components/movies";
+import Ads from "../components/adsSildeShow/adsSlideShow"
 import { Link, useNavigate } from "react-router-dom";
 import { doSignOut } from "../firebase/auth";
 import { useAuth } from "../context/authContext";
@@ -34,8 +36,9 @@ function Home() {
                 <div className="max-md:hidden">
                     <Navbar />
                 </div>
+                <Ads/>  
                 <div className="page-container max-md:hidden">
-                    {userLoggedIn && (
+                    {/* {userLoggedIn && (
                         <div className="user-info text-white">
                         <h3 className="text-lg font-bold">User Information:</h3>
                         {userData ? (
@@ -55,9 +58,9 @@ function Home() {
                         <button className="ml-4 gg" onClick={handleSignOut}>
                             Sign Out
                         </button>
-                    )}
-                    <div className="bg-white rounded-t-3xl px-5 mt-1 py-1 md:hidden pb-60 h-full relative">
-                        {/* Content for the home page */}
+                    )} */}
+                    <div className="bg-white movies-container">
+                        <Movies/>
                     </div>
                 </div>
                 <div className="max-md:hidden">
