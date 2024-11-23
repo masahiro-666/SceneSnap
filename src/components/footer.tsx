@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 export const Footer: FC = (): ReactElement => {
   return (
-    <div className="footer-container w-full ">
+    <div className="footer-container w-full pagecon ">
       <Box
         sx={{
           width: "100%",
