@@ -9,7 +9,7 @@ body {
         background-image: url("backgroundwrap.png");
         background-repeat: repeat;
         background-size: contain;
-        background-color: #000000;
+        background-color: #212121;
         font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     }
     .product {
