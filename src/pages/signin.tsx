@@ -79,15 +79,16 @@ function signin() {
                     </button>
                   </div>
                 </div>
-
+                
+                <Link to="/forgetpassword">
                 <div className="text-sm mt-2">
                   <a
-                    href="#"
                     className="inline-block align-middle py-1 px-2 font-semibold text-gray-400 hover:text-gray-500"
                   >
                     Forgot password?
                   </a>
                 </div>
+                </Link>
               </div>
 
               <div className="flex flex-col items-center space-y-4">
