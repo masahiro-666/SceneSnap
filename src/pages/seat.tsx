@@ -13,9 +13,13 @@ function seat() {
   return (
     <div className="App">
       <div><Navbar/></div>
-      <div><Step/></div>
-      <div><MovieTitle/></div>
-      <div><MovieSeats/></div>
+      
+      <div className="page-container max-md:hidden">
+        <div><Step/></div>
+        <div><MovieTitle/></div>
+        <div><MovieSeats/></div>
+      </div>
+      
       <div><Footer/></div>
     </div>
 
