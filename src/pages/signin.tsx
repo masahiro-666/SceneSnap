@@ -1,10 +1,11 @@
 import "../components/styles/styles.css";
 import logo from "../components/mockups/logo.png";
+import { Link } from 'react-router-dom';
 
 function signin() {
     return (
       <>
-        <div className="h-full bg-bgblack">
+        <div className="h-full">
           <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
               <img alt="LOGO" src={logo} className="mx-auto h-10 w-auto" />
@@ -77,12 +78,14 @@ function signin() {
                         <div className="flex-grow border-t border-gray-300"></div>
                     </div>
   
+                <Link to="/signup">
                   <button
-                    type="submit"
+                    
                     className="custom-outline-btn"
-                  >
+                    >
                     SIGN UP
                   </button>
+                </Link>
                 </div>
               </form>
   
