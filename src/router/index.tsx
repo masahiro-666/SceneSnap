@@ -2,6 +2,7 @@ import { Outlet, createBrowserRouter } from 'react-router-dom'
 import Home from "../pages/home"
 import Signin from "../pages/signin"
 import Signup from "../pages/signup"
+import Forgetpassword from "../pages/forgetpassword"
 import Seat from "../pages/seat"
 
 export const router = createBrowserRouter([
@@ -29,7 +30,14 @@ export const router = createBrowserRouter([
         </div>
       ),
     },
-
+    {
+      path: '/forgetpassword',
+      element: (
+        <div>
+          <Forgetpassword/>
+        </div>
+      ),
+    },
     {
       path: '/seat',
       element: (

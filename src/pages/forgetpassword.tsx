@@ -2,26 +2,30 @@ import { useState } from "react";
 import "../components/styles/styles.css";
 import logo from "../components/mockups/logo.png";
 import { Link } from "react-router-dom";
-import { passwordReset } from "../firebase/auth";
+import { sendPasswordResetEmail } from "firebase/auth"; // Import Firebase's reset email method
+import { auth } from "../firebaseConfig"; // Import Firebase auth
 
-function ForgotPassword() {
-  const [email, setEmail] = useState("");
+function Forgotpassword() {
+  const [email, setEmail] = useState(""); // Email state
+  const [errorMessage, setErrorMessage] = useState(""); // Error state
+  const [successMessage, setSuccessMessage] = useState(""); // Success message state
 
   const handleEmailChange = (e) => {
-    setEmail(e.target.value);
+    setEmail(e.target.value); // Update email state
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
-      await passwordReset(email);
-      setEmailMessage(true);
-    } catch (error:any) {    
-      if (error.code === 'auth/user-not-found') {
-        alert('User not found, try again!')
-        setEmail('')
-      }
-    console.log("Password reset link sent to:", email);
+      // Send password reset email using Firebase
+      await sendPasswordResetEmail(auth, email);
+      setSuccessMessage("Password reset link sent! Check your email."); // Show success message
+      setErrorMessage(""); // Clear any previous error messages
+    } catch (error) {
+      setErrorMessage(error.message); // Set error message if something goes wrong
+      setSuccessMessage(""); // Clear success message on error
+    }
   };
 
   return (
@@ -37,10 +41,7 @@ function ForgotPassword() {
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-white"
-              >
+              <label htmlFor="email" className="block text-sm font-medium text-white">
                 Enter your email
               </label>
               <div className="mt-2">
@@ -56,6 +57,14 @@ function ForgotPassword() {
                 />
               </div>
             </div>
+
+            {errorMessage && (
+              <div className="text-red-500 text-sm text-center">{errorMessage}</div>
+            )}
+
+            {successMessage && (
+              <div className="text-green-500 text-sm text-center">{successMessage}</div>
+            )}
 
             <div className="flex justify-center">
               <button
@@ -81,4 +90,4 @@ function ForgotPassword() {
   );
 }
 
-export default ForgotPassword;
+export default Forgotpassword;
