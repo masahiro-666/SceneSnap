@@ -1,16 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import Navbar from "../components/navbar";
+import Footer from "../components/footer";
+import { Link, useNavigate } from "react-router-dom";
+import { doSignOut } from "../firebase/auth";
+import { useAuth } from "../context/authContext";
+import useUserData from "../context/authContext/userdata";
 
-import Navbar from "../components/navbar"
-import Footer from "../components/footer"
-import Movies from "../components/movies"
-
-import { Link, useNavigate } from 'react-router-dom';
-import { doSignOut } from '../firebase/auth';
-import { useAuth } from '../context/authContext';
-
-function home(){
-    const { userLoggedIn } = useAuth(); // Get user from auth context
+function Home() {
+    const { userLoggedIn } = useAuth();
     const navigate = useNavigate();
+    const { userData, loading, error } = useUserData();
+
+    console.log("user data: ",userData);
+
+    useEffect(() => {
+        if (!userLoggedIn) {
+            navigate("/signin");
+        }
+    }, [userLoggedIn, navigate]);
 
     const handleSignOut = async () => {
         try {
@@ -20,31 +27,45 @@ function home(){
             console.error("Error signing out: ", error);
         }
     };
-    return(
+
+    return (
         <>
-            <div className="app-container">
+             <div className="app-container">
                 <div className="max-md:hidden">
-                    <Navbar/>
+                    <Navbar />
                 </div>
                 <div className="page-container max-md:hidden">
-                {userLoggedIn && (
-                            <div className="user-info text-white">
-                                <p className="text-white">Welcome, {userLoggedIn.email}!</p>
-                            </div>
+                    {userLoggedIn && (
+                        <div className="user-info text-white">
+                        <h3 className="text-lg font-bold">User Information:</h3>
+                        {userData ? (
+                          <ul className="mt-2">
+                            {Object.entries(userData).map(([key, value]) => (
+                              <li key={key} className="capitalize">
+                                <strong>{key.replace(/_/g, " ")}:</strong> {value?.toString() || "N/A"}
+                              </li>
+                            ))}
+                          </ul>
+                        ) : (
+                          <p>No user data available.</p>
                         )}
-                        <button className="text-white ml-4" onClick={handleSignOut}>
+                      </div>
+                    )}
+                    {userLoggedIn && (
+                        <button className="ml-4 gg" onClick={handleSignOut}>
                             Sign Out
                         </button>
+                    )}
                     <div className="bg-white rounded-t-3xl px-5 mt-1 py-1 md:hidden pb-60 h-full relative">
-
+                        {/* Content for the home page */}
                     </div>
                 </div>
                 <div className="max-md:hidden">
-                    <Footer/>
+                    <Footer />
                 </div>
             </div>
         </>
-    )
+    );
 }
 
-export default home
+export default Home;

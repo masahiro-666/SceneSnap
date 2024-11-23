@@ -9,28 +9,16 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { baseURL } from '../components/userIDConfig';
 import axios from "axios";
-import { onAuthStateChanged } from "firebase/auth";
 
 
-interface usersType {
-  userID: string;
-  username: string;
-  name: string;
-  surname: string;
-  email: string;
-  credit: number;
-  phoneNumber: string;
-  role: number;
-}
 
 function Signin() {
-  const { userLoggedIn, uid } = useAuth();
+  const { userLoggedIn } = useAuth();
   const [showPassword, setShowPassword] = useState(false); // State for toggling password visibility
   const [email, setEmail] = useState(""); // State for email input
   const [password, setPassword] = useState(""); // State for password input
   const [errorMessage, setErrorMessage] = useState(""); // State for error message
   const [isSigningIn, setIsSigningIn] = useState(false);
-  const [data, setData] = useState<usersType | null>(null);
   const navigate = useNavigate(); // Initialize useNavigate
 
   

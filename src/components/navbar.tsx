@@ -15,9 +15,9 @@ function Navbar() {
                             </div>
                         </Link>
                     </div>
-                    <div className="navbar-right">
+                    {/* <div className="navbar-right">
                         
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </>
