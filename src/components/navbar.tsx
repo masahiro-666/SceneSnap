@@ -1,9 +1,24 @@
 import React, { useState, useEffect } from "react";
 import "./styles/styles.css";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { doSignOut } from '../firebase/auth';
+import { useAuth } from '../context/authContext';
+import { baseUser, baseURL } from '../components/userIDConfig';
 
 
 function Navbar() {
+    const { userLoggedIn } = useAuth();
+    const navigate = useNavigate();
+
+    const handleSignOut = async () => {
+        try {
+          await doSignOut();
+          navigate('/signin');
+        } catch (error) {
+          console.error("Error signing out: ", error);
+        }
+      };
+
     return (
         <>
             {/* {window.innerWidth > 375 ? ( */}
@@ -19,6 +34,7 @@ function Navbar() {
                     </div>
                 </div>
             </div>
+            <button className="text-white" onClick={handleSignOut}>signout</button>
 
             <div className="page-container max-md:hidden">
             </div>

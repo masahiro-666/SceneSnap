@@ -21,7 +21,7 @@ export const doSignUpWithEmailAndPassword = async (email, password, username) =>
     const user = userCredential.user;
     console.log("asdasd", userCredential.user.uid);
     console.log("asdasd:",{ useruid, username, email });
-    const response = await axios.post(`${baseURL}/users/addNewUser/${user.uid}/${username}/${email}/?profilePicUrl=https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vecteezy.com%2Fvector-art%2F5005788-user-icon-in-trendy-flat-style-isolated-on-grey-background-user-symbol-for-your-web-site-design-logo-app-ui-vector-illustration-eps10&psig=AOvVaw1CEQsLjNo4rMgMjOBfMTmr&ust=1726804979399000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCOCqlf6PzogDFQAAAAAdAAAAABAE`);
+    // const response = await axios.post(`${baseURL}/users/addNewUser/${user.uid}/${username}/${email}/?profilePicUrl=https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vecteezy.com%2Fvector-art%2F5005788-user-icon-in-trendy-flat-style-isolated-on-grey-background-user-symbol-for-your-web-site-design-logo-app-ui-vector-illustration-eps10&psig=AOvVaw1CEQsLjNo4rMgMjOBfMTmr&ust=1726804979399000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCOCqlf6PzogDFQAAAAAdAAAAABAE`);
     return userCredential;
   } catch (error) {
     console.error("Error signing up with email and password:", error);
@@ -56,7 +56,7 @@ export const doSignInWithGoogle = async () => {
 
     console.log("User Name:", user.displayName, user.uid, user.email, user.photoURL);
     console.log("Profile Picture URL:", user.photoURL);
-    const response = await axios.post(`${baseURL}/users/addNewUser/${user.uid}/${user.displayName}/${user.email}/?profilePicUrl=${user.photoURL}`);
+    // const response = await axios.post(`${baseURL}/users/addNewUser/${user.uid}/${user.displayName}/${user.email}/?profilePicUrl=${user.photoURL}`);
     
     return user;
   } catch (error) {

@@ -1,25 +1,44 @@
 import { useState } from "react";
 import "../components/styles/styles.css";
 import logo from "../components/mockups/logo.png";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import { auth } from "../firebaseConfig"; // Import Firebase auth
+import { doSignInWithEmailAndPassword, doSignInWithGoogle } from '../firebase/auth';
+import { useAuth } from '../context/authContext';
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
-function signin() {
+function Signin() {
   const [showPassword, setShowPassword] = useState(false); // State for toggling password visibility
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false); // State for confirm password visibility
+  const [email, setEmail] = useState(""); // State for email input
+  const [password, setPassword] = useState(""); // State for password input
+  const [errorMessage, setErrorMessage] = useState(""); // State for error message
+  const [isSigningIn, setIsSigningIn] = useState(false);
+  const { userLoggedIn } = useAuth();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword); // Toggle password visibility
   };
 
-  const toggleConfirmPasswordVisibility = () => {
-    setShowConfirmPassword(!showConfirmPassword); // Toggle confirm password visibility
+  const handleSubmit = async (e: { preventDefault: () => void; }) => {
+    e.preventDefault();
+    setErrorMessage('');
+    if (!isSigningIn) {
+      setIsSigningIn(true);
+      try {
+        await doSignInWithEmailAndPassword(email, password);
+      } catch (error) {
+        setErrorMessage(error.message);
+        setIsSigningIn(false);
+      }
+    }
   };
 
   return (
     <>
+      {userLoggedIn && <Navigate to="/home" replace={true} />}
       <div className="h-full">
+      {/* {userLoggedIn && <Navigate to="/home" replace={true} />} */}
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
             <img alt="LOGO" src={logo} className="mx-auto h-10 w-auto" />
@@ -29,7 +48,7 @@ function signin() {
           </div>
 
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form action="#" method="POST" className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label
                   htmlFor="email"
@@ -44,6 +63,8 @@ function signin() {
                     type="email"
                     required
                     autoComplete="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)} // Bind email state
                     className="custom-input"
                   />
                 </div>
@@ -64,6 +85,8 @@ function signin() {
                       type={showPassword ? "text" : "password"}
                       required
                       autoComplete="new-password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)} // Bind password state
                       className="custom-input"
                     />
                     <button
@@ -91,6 +114,10 @@ function signin() {
                 </Link>
               </div>
 
+              {errorMessage && (
+                <div className="text-red-500 text-sm text-center">{errorMessage}</div> // Display error message
+              )}
+
               <div className="flex flex-col items-center space-y-4">
                 <button type="submit" className="custom-submit-btn">
                   SIGN IN
@@ -107,16 +134,6 @@ function signin() {
                 </Link>
               </div>
             </form>
-
-            {/* <p className="mt-10 text-center text-sm/6 text-gray-100">
-                Not a member?{" "}
-                <a
-                  href="#"
-                  className="font-semibold text-emerald-500 hover:text-emerald-600"
-                >
-                  Sign Up
-                </a>
-              </p> */}
           </div>
         </div>
       </div>
@@ -124,4 +141,4 @@ function signin() {
   );
 }
 
-export default signin;
+export default Signin;
