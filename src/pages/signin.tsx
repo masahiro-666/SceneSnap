@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../components/styles/styles.css";
 import logo from "../components/mockups/logos/logo15.png";
 import { Link, Navigate, useNavigate } from "react-router-dom";
@@ -7,19 +7,52 @@ import { doSignInWithEmailAndPassword, doSignInWithGoogle } from '../firebase/au
 import { useAuth } from '../context/authContext';
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { baseURL } from '../components/userIDConfig';
+import axios from "axios";
+import { onAuthStateChanged } from "firebase/auth";
+
+
+interface usersType {
+  userID: string;
+  username: string;
+  name: string;
+  surname: string;
+  email: string;
+  credit: number;
+  phoneNumber: string;
+  role: number;
+}
 
 function Signin() {
+  const { userLoggedIn, uid } = useAuth();
   const [showPassword, setShowPassword] = useState(false); // State for toggling password visibility
   const [email, setEmail] = useState(""); // State for email input
   const [password, setPassword] = useState(""); // State for password input
   const [errorMessage, setErrorMessage] = useState(""); // State for error message
   const [isSigningIn, setIsSigningIn] = useState(false);
-  const { userLoggedIn } = useAuth();
+  const [data, setData] = useState<usersType | null>(null);
   const navigate = useNavigate(); // Initialize useNavigate
+
+  
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword); // Toggle password visibility
   };
+
+  // const handleSubmit = async (e: { preventDefault: () => void; }) => {
+  //   e.preventDefault();
+  //   setErrorMessage('');
+  //   if (!isSigningIn) {
+  //     setIsSigningIn(true);
+  //     try {
+  //       await doSignInWithEmailAndPassword(email, password);
+  //       navigate('/home'); // Redirect to /home after successful sign-in
+  //     } catch (error) {
+  //       setErrorMessage(error.message);
+  //       setIsSigningIn(false);
+  //     }
+  //   }
+  // };
 
   const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
@@ -28,9 +61,30 @@ function Signin() {
       setIsSigningIn(true);
       try {
         await doSignInWithEmailAndPassword(email, password);
-        navigate('/home'); // Redirect to /home after successful sign-in
+        
+        const userUid = auth.currentUser?.uid;
+        if (!userUid) {
+          setErrorMessage('User UID is not available.');
+          setIsSigningIn(false);
+          return;
+        }
+  
+        // Fetch user data
+        const userDoc = await axios.get(`${baseURL}/customer/getEachUser/${userUid}`);
+
+        console.log("uid: ",userUid);
+        console.log("user role: ",userDoc.data.role);
+        
+          if (userDoc.data.role == 0) {
+            navigate('/home'); // Navigate to /home if the role is 0
+          } else if (userDoc.data.role == 1) {
+            navigate('/moviesManagement'); // Navigate to /moviesManagement if the role is 1
+          } else {
+            setErrorMessage('Invalid role');
+          }
+
       } catch (error) {
-        setErrorMessage(error.message);
+        setErrorMessage('Error: ' + error.message); // More specific error message
         setIsSigningIn(false);
       }
     }

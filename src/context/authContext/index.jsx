@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
       setCurrentUser(user);
       setLoading(false);
       console.log("Current user:", user.uid); // Log the current user to verify
-      const response = await axios.get(`${baseURL}/users/${user.uid}`);
+      const response = await axios.get(`${baseURL}/customer/getEachUser/${user.uid}`);
       setCurrentUserdb(response.data[0]);
     });
     
