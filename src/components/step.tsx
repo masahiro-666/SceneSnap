@@ -17,13 +17,13 @@ function step() {
         </div>
         ))}
     </div>
-    <button className='flex justify-center text-white' onClick={()=>{
+    {/* <button className='flex justify-center text-white' onClick={()=>{
       currentStep === steps.length 
       ? setComplete(true) 
       : setCurrentStep((prev) => prev + 1)
     }}>
       {currentStep === steps.length ? 'Finish' : 'Next'}
-      </button>
+      </button> */}
     </>
   )
 }
