@@ -2,6 +2,7 @@ import { useState } from "react";
 import "../components/styles/styles.css";
 import logo from "../components/mockups/logo.png";
 import { Link } from "react-router-dom";
+import { passwordReset } from "../firebase/auth";
 
 function ForgotPassword() {
   const [email, setEmail] = useState("");
@@ -12,7 +13,14 @@ function ForgotPassword() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    //reset logic
+    try {
+      await passwordReset(email);
+      setEmailMessage(true);
+    } catch (error:any) {    
+      if (error.code === 'auth/user-not-found') {
+        alert('User not found, try again!')
+        setEmail('')
+      }
     console.log("Password reset link sent to:", email);
   };
 

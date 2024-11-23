@@ -1,13 +1,24 @@
 import { useState } from "react";
 import "../components/styles/styles.css";
 import logo from "../components/mockups/logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { doSignUpWithEmailAndPassword } from "../firebase/auth"
+import { auth } from "../firebaseConfig"; // Import Firebase auth
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
-function signup() {
+function Signup() {
   const [showPassword, setShowPassword] = useState(false); // State for toggling password visibility
   const [showConfirmPassword, setShowConfirmPassword] = useState(false); // State for confirm password visibility
+  const [fullName, setFullName] = useState(""); // State for full name input
+  const [email, setEmail] = useState(""); // State for email input
+  const [password, setPassword] = useState(""); // State for password input
+  const [confirmPassword, setConfirmPassword] = useState(""); // State for confirm password input
+  const [errorMessage, setErrorMessage] = useState(""); // State for error message
+  const navigate = useNavigate(); // Navigate to other pages after successful sign-up
+  const [error, setError] = useState(null);
+  const [open, setOpen] = useState(false);
+  const [verificationCode, setVerificationCode] = useState('');
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword); // Toggle password visibility
@@ -15,6 +26,41 @@ function signup() {
 
   const toggleConfirmPasswordVisibility = () => {
     setShowConfirmPassword(!showConfirmPassword); // Toggle confirm password visibility
+  };
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+
+//     if (password !== confirmPassword) {
+//       setErrorMessage("Passwords do not match!");
+//       return;
+//     }
+
+//     try {
+//       // Create a new user using Firebase Authentication
+//       await createUserWithEmailAndPassword(auth, email, password);
+//       // Optionally, you can store additional user details like fullName in Firebase Firestore
+//       navigate("/signin"); // Redirect to sign-in page after successful registration
+//     } catch (error) {
+//       setErrorMessage(error.message); // Set error message for failed sign-up
+//     }
+//   };
+
+const handleSubmit = async (event: any) => {
+    event.preventDefault();
+    try {
+      const userCredential = await doSignUpWithEmailAndPassword(email, password, name);
+      console.log("Signed up successfully:", userCredential);
+      
+      
+      // Send verification email and code
+      await setVerificationCode(email);
+      
+      setOpen(true);
+    } catch (error) {
+      setError(error.message);
+      console.error("Error signing up:", error);
+    }
   };
 
   return (
@@ -28,7 +74,7 @@ function signup() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form action="#" method="POST" className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label
                 htmlFor="fullName"
@@ -43,6 +89,8 @@ function signup() {
                   type="text"
                   required
                   autoComplete="name"
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)} // Bind fullName state
                   className="custom-input"
                 />
               </div>
@@ -62,6 +110,8 @@ function signup() {
                   type="email"
                   required
                   autoComplete="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)} // Bind email state
                   className="custom-input"
                 />
               </div>
@@ -81,6 +131,8 @@ function signup() {
                   type={showPassword ? "text" : "password"}
                   required
                   autoComplete="new-password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)} // Bind password state
                   className="custom-input"
                 />
                 <button
@@ -104,20 +156,26 @@ function signup() {
                 <input
                   id="confirmPassword"
                   name="confirmPassword"
-                  type={showPassword ? "text" : "password"}
+                  type={showConfirmPassword ? "text" : "password"}
                   required
                   autoComplete="new-password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)} // Bind confirmPassword state
                   className="custom-input"
                 />
                 <button
                   type="button"
-                  onClick={togglePasswordVisibility}
+                  onClick={toggleConfirmPasswordVisibility}
                   className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 focus:outline-none"
                 >
-                  {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                  {showConfirmPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
                 </button>
               </div>
             </div>
+
+            {errorMessage && (
+              <div className="text-red-500 text-sm text-center">{errorMessage}</div> // Display error message
+            )}
 
             <div className="flex justify-center">
               <button type="submit" className="custom-submit-btn">
@@ -140,4 +198,4 @@ function signup() {
   );
 }
 
-export default signup;
+export default Signup;

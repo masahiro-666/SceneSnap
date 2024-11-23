@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 function Movies() {
     return (
         <>
-            <div className="products-container">
+            <div className="page-container">
                 
             </div>
         </>
