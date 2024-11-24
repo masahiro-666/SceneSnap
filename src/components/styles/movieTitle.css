@@ -1,0 +1,105 @@
+.box-movie-detail {
+  background-color: #f5f7fb;
+}
+
+*{
+  -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+div {
+  display: block;
+  unicode-bidi: isolate;
+}
+
+body {
+  font-family: SmarnFilm Condensed, sans-serif;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333;
+  background-color: #fff;
+}
+
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.row {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.box-movie-detail .detail-box {
+  background-color: transparent;
+  position: relative;
+  display: flex
+;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.box-movie-detail .poster {
+  width: 30%;
+  position: relative;
+}
+
+.box-movie-detail .movie-detail {
+  padding: 35px 15px;
+  color: #fff;
+  width: 70%;
+  position: relative;
+}
+
+.box-movie-detail .movie-detail .main-detail {
+  margin-bottom: 30px;
+}
+
+.box-movie-detail .movie-detail .name {
+  font-family: SmarnFilm Black;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+p {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  unicode-bidi: isolate;
+}
+
+.name {
+  font-family: SmarnFilm Black;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.movie-detail{
+  padding-top: 10%;
+  padding-left: 10%;
+  padding-bottom: 10%;
+  padding-right: 10%;
+  
+}
