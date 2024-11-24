@@ -165,7 +165,7 @@ function MovieSeats() {
                     {/* <td></td> */}
                     <td colSpan={20}>
                       <div className="screen-wrapper">
-                        <div className="screen-image relative">
+                        <div className="screen-image relative h-5 w-60">
                           <img src="/screen.svg" alt="" />
                         </div>
                         <div className="screen-text absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-opacity-50  p-4">
