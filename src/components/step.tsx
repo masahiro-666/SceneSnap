@@ -9,7 +9,7 @@ function step() {
 
   return (
     <>
-    <div className='flex justify-center'>
+    <div className='flex justify-center py-6'>
       {steps?.map((step, i) => (
         <div key={i} className={`step-item ${currentStep === i+1 && 'active'} ${(i + 1 < currentStep || complete) && 'complete'}`}>
           <div className='step'>{i + 1}</div>

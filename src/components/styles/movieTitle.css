@@ -55,10 +55,10 @@ body {
   align-items: center;
 }
 
-.box-movie-detail .poster {
+/* .box-movie-detail .poster {
   width: 30%;
   position: relative;
-}
+} */
 
 .box-movie-detail .movie-detail {
   padding: 35px 15px;
@@ -97,9 +97,9 @@ p {
 }
 
 .movie-detail{
-  padding-top: 10%;
-  padding-left: 10%;
-  padding-bottom: 10%;
-  padding-right: 10%;
+  padding-top: 5%;
+  padding-left: 5%;
+  padding-bottom: 5%;
+  padding-right: 5%;
   
 }
