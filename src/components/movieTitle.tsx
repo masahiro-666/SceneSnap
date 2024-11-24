@@ -3,14 +3,15 @@ import "./styles/movieTitle.css";
 
 function movieTitle() {
   return (
-    <div className="container py-10">
-      <div className="grid px-72">
-        <div className="movie-detail grid grid-cols-2 items-center justify-center gap-x-2 bg-white">
+    <div className="container py-20">
+      <div className="grid px-60">
+        <div className="movie-detail grid grid-cols-2 items-center justify-center gap-x-2 bg-white relative">
           <div className="poster items-end justify-end text-right content-end ">
             <img
-              className="pl-32 shadow hover:shadow-sm"
+              className="inline  absolute top-0 bottom-0 left-44  object-cover shadow-[0_10px_20px_rgba(0,0,0,0.2)] rounded-lg "
               src="https://lh3.googleusercontent.com/GaBes2eElGwZMj0hXJ2U14e2es5fIBCnEXl6XYQqXJEbYQGLAjX7Wq78R0Z0vc3xKhwvx9abYbicI6slEkRFBofMrkaVZ5tCiw=w260"
             />
+
           </div>
           <div className="movie-detail">
             <div className="grid grid-rows-3 content-start items-start justify-start text-left">
