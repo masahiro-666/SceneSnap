@@ -42,11 +42,8 @@ tr {
 
 .row-label {
   font-weight: bold;
-  padding: 0 10px;
   text-align: center;
-  white-space: nowrap;
   width: 20px;
-  background: red;
 }
 
 .row-label-L {

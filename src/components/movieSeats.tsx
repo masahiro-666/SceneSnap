@@ -13,9 +13,9 @@ const seatRows = [
   { label: "F", seats: 16, type: "premium" },
   { label: "E", seats: 16, type: "premium" },
   { label: "D", seats: 16, type: "premium" },
-  { label: "C", seats: 14, type: "prime" },
-  { label: "B", seats: 14, type: "prime" },
-  { label: "A", seats: 14, type: "prime" },
+  { label: "C", seats: 16, type: "prime" },
+  { label: "B", seats: 16, type: "prime" },
+  { label: "A", seats: 16, type: "prime" },
 ];
 
 function MovieSeats() {
