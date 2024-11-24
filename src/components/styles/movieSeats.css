@@ -47,3 +47,15 @@ div {
   display: block;
   unicode-bidi: isolate;
 }
+
+.eventPrime-icon, .eventPremium-icon,.eventSuiteL-icon , .eventSuiteR-icon{
+  height: 50px;
+}
+
+.seat-icon.seat-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  
+}
