@@ -72,6 +72,16 @@ tr {
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  position: relative; /* Position relative to allow absolute positioning of the button */
+  display: flex;
+  flex-direction: column; /* Keep the vertical layout for content */
+}
+
+.select-seat {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
 }
 
 .details-section h2 {
@@ -88,8 +98,7 @@ tr {
   padding: 0;
 }
 
-.details-section .proceed-button {
-  width: 100%;
+.proceed-button {
   padding: 10px;
   background-color: #007bff;
   color: white;
@@ -97,6 +106,10 @@ tr {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.top-section{
+  height: 400px;
 }
 
 .row-label {
@@ -176,4 +189,21 @@ tr {
 .seat-price p {
   margin: 0; /* Ensure no margin around the text */
   text-align: center; /* Ensure text is centered inside its container */
+}
+
+.select-seat {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 50px;
+}
+
+.select-seat p {
+  margin: 0;
+  white-space: nowrap;
+  font-size: 16px;
+  color: #047857;
+  flex-basis: calc(100% / 8 - 10px);
 }

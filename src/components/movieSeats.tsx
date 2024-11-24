@@ -39,8 +39,8 @@ function MovieSeats() {
   };
 
   const getSeatPrice = (type) => {
-    if (type === "premium") return 100;
-    if (type === "prime") return 200;
+    if (type === "premium") return 300;
+    if (type === "prime") return 600;
     return 0;
   };
 
@@ -64,7 +64,6 @@ function MovieSeats() {
             <p>Event Prime</p>
             <p>600 THB</p>
           </div>
-
           
         </div>
         <div className="screen">
@@ -114,17 +113,51 @@ function MovieSeats() {
         </table>
       </div>
 
-      <div className="details-section">
-        <h2>GG</h2>
-        <hr />
-        <p>Selected Seat:</p>
-        <ul>
-          {selectedSeats.map((seat, index) => (
-            <li key={index}>{seat}</li>
-          ))}
-        </ul>
-        <p>Total: {totalPrice} THB</p>
-        <button className="proceed-button">Continue</button>
+      <div className="bg-slate-50 rounded-md px-5 w-1/4 mr-14">
+        <div className=" justify-center text-center">
+          <h2 className="mt-10 text-2xl font-extrabold">Movie title</h2>
+          <iframe className="mt-8 aspect-w-16 aspect-h-9 rounded-lg"
+          src="https://www.youtube.com/embed/CfnM5JFmvVo" 
+          title="Disney’s Moana 2 โมอาน่า 2 | Teaser Trailer ซับไทย" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+          </iframe>
+        </div>
+          <hr />
+          <p className="mt-20">Selected Seat:</p>
+          <div className="font-extrabold select-seat">
+            {selectedSeats.length === 0 ? (
+              <p>-</p>
+            ) : (
+              selectedSeats
+                .sort((a, b) => {
+                  const [rowA, seatA] = a.split("-");
+                  const [rowB, seatB] = b.split("-");
+
+                  // Sort by row letter first (A-Z), then by seat number (1-n)
+                  if (rowA === rowB) {
+                    return seatA - seatB; // Compare seat numbers if rows are the same
+                  }
+                  return rowA.localeCompare(rowB); // Compare row labels if rows are different
+                })
+                .map((seat, index) => (
+                  <p key={index}>{seat}</p>
+                ))
+            )}
+          </div>
+          <div className="border-t mt-6 justify-center text-center">
+            <p className="text-lg mt-6 font-bold">Total</p>
+            <p className="text-2xl mt-1 font-bold">{totalPrice} THB</p>
+            <div className="mt-6">
+                    <a
+                      href="#"
+                      className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                    >
+                      Continue
+                    </a>
+                  </div>
+          </div>
       </div>
     </div>
   );
