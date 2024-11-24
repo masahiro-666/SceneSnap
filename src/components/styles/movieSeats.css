@@ -47,3 +47,26 @@ div {
   display: block;
   unicode-bidi: isolate;
 }
+
+.seatmap .row-id {
+  color: #c6c7c7;
+  font-weight: 700;
+}
+
+.seatmap .empty {
+  height: 15px;
+  width: 15px;
+  margin: 0 auto;
+}
+
+.seatmap .button-seat {
+  padding: 0;
+  margin: 0;
+  border: none;
+  outline: none;
+  display: block;
+  width: 100%;
+  background: none;
+  position: relative;
+  min-width: 16px;
+}

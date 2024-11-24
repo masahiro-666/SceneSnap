@@ -110,29 +110,6 @@ function movieSeats() {
             </ul>
           </div>
 
-          <div className="seatmap-wrapper py-4">
-            <div className="seatmap overflow-auto">
-              <table className="table-seatmap">
-                <tbody>
-                  <tr>
-                    {/* <td></td> */}
-                    <td colSpan={20}>
-                      <div className="screen-wrapper">
-                        <div className="screen-image relative">
-                          <img src="/screen.svg" alt="" />
-                        </div>
-                        <div className="screen-text absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-opacity-50  p-4">
-                          <span className="text-3xl font-bold">จอภาพยนตร์</span>
-                        </div>
-                        <div className="screen-text"></div>
-                      </div>
-                    </td>
-                    {/* <td></td> */}
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
         </div>
         <div>02</div>
       </div>
