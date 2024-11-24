@@ -44,6 +44,11 @@ function MovieSeats() {
     return 0;
   };
 
+  const movieDetils = {
+    title:'Moana 2',
+    urlVDO:'https://www.youtube.com/embed/CfnM5JFmvVo'
+  };
+
   const totalPrice = selectedSeats.reduce((total, seat) => {
     const [rowLabel] = seat.split("-");
     const row = seatRows.find((r) => r.label === rowLabel);
@@ -115,18 +120,17 @@ function MovieSeats() {
 
       <div className="bg-slate-50 rounded-md px-5 w-1/4 mr-14">
         <div className=" justify-center text-center">
-          <h2 className="mt-10 text-2xl font-extrabold">Movie title</h2>
-          <iframe className="mt-8 aspect-w-16 aspect-h-9 rounded-lg"
-          src="https://www.youtube.com/embed/CfnM5JFmvVo" 
-          title="Disney’s Moana 2 โมอาน่า 2 | Teaser Trailer ซับไทย" 
+          <h2 className="mt-10 text-2xl font-extrabold">{movieDetils.title}</h2>
+          <iframe className="mt-8 mx-auto aspect-w-16 aspect-h-9 rounded-lg"
+          src={movieDetils.urlVDO}
           frameborder="0" 
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
           </iframe>
         </div>
-          <hr />
-          <p className="mt-20">Selected Seat:</p>
-          <div className="font-extrabold select-seat">
+          <div className="border-t mt-6"></div>
+          <p className="mt-6">Selected Seat:</p>
+          <div className="font-extrabold select-seat min-h-[100px]">
             {selectedSeats.length === 0 ? (
               <p>-</p>
             ) : (
@@ -152,11 +156,11 @@ function MovieSeats() {
             <div className="mt-6">
                     <a
                       href="#"
-                      className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                      className="flex items-center justify-center rounded-md border border-transparent bg-black px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-zinc-800"
                     >
                       Continue
                     </a>
-                  </div>
+            </div>
           </div>
       </div>
     </div>

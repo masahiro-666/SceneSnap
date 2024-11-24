@@ -204,6 +204,7 @@ tr {
   margin: 0;
   white-space: nowrap;
   font-size: 16px;
-  color: #047857;
+  color: #3f3f46;
   flex-basis: calc(100% / 8 - 10px);
 }
+

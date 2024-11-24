@@ -1,5 +1,5 @@
 body {
-    background: linear-gradient(to left, rgba(96, 250, 165, 0.8), rgba(147, 253, 197, 0.75), rgba(191, 254, 219, 1));
+    background: linear-gradient(to left, rgba(33, 33, 33, 1), rgba(33, 33, 33, 1), rgba(33, 33, 33, 1));
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
@@ -29,12 +29,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #22C55E;
+    background: #212121;
     border-radius: 16px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #22C55E;
+    background: #212121;
 }
 
 .ant-table-body {
@@ -52,12 +52,12 @@ body {
 
 .ant-table-body::-webkit-scrollbar-thumb {
     border-radius: 6px;
-    background-color: #5AFFA2;
+    background-color: #212121;
 }
 
 .ant-table-body::-webkit-scrollbar-thumb:hover {
     border-radius: 6px;
-    background-color: #47CC8A;
+    background-color: #212121;
 }
 
 .custom-modal .ant-modal-content {
@@ -65,7 +65,7 @@ body {
 }
 
 .custom-modal .ant-modal-header {
-    background-color: #47c26c; /* Customize modal header background */
+    background-color: #212121; /* Customize modal header background */
     color: white; /* Customize modal header text color */
 }
 
@@ -139,7 +139,7 @@ textarea:focus, input:focus{
 }
 
 a {
-    color: #5AFFA2;
+    color: #212121;
     text-decoration: none;
 }
 
@@ -176,10 +176,6 @@ a {
 .custom-outline-btn{
     @apply w-80 justify-center rounded-3xl border-2 border-black bg-transparent px-5 py-1.5 text-sm/6 font-semibold text-black shadow-sm hover:text-emerald-500 hover:border-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-500;
 
-}
-
-.gg {
-    color: red;
 }
 
 .movie-img{

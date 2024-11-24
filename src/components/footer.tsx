@@ -9,7 +9,7 @@ export const Footer: FC = (): ReactElement => {
         sx={{
           width: "100%",
           height: "auto",
-          background: "linear-gradient(to bottom, transparent, #47CC8A)",
+          background: "linear-gradient(to bottom, transparent, #212121)",
           paddingTop: "1rem",
           paddingBottom: "1rem",
           mt: 10 ,
@@ -18,20 +18,20 @@ export const Footer: FC = (): ReactElement => {
         <Container maxWidth="lg" >
           <Grid container direction="column" alignItems="center">
             <Grid item xs={12} sx={{mt:5, }}>
-              <Typography color="black" variant="h5">
+              <Typography color="#d4d4d8" variant="h5">
                 Scene Snap ©
               </Typography>
             </Grid>
             <Grid item xs={12}>
-            <Typography color="textSecondary" variant="subtitle1" xs={{mt:20,}}>
+            <Typography color="#a1a1aa" variant="subtitle1" xs={{mt:20,}}>
                 {`${new Date().getFullYear()} | `}
-                <a href="https://reactjs.org/" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>React</a>
+                <a href="https://reactjs.org/" target="_blank" rel="noopener noreferrer" style={{ color: '#a1a1aa', textDecoration: 'none' }}>React</a>
                 {` | `}
-                <a href="https://vitejs.dev/" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>Vite</a>
+                <a href="https://vitejs.dev/" target="_blank" rel="noopener noreferrer" style={{ color: '#a1a1aa', textDecoration: 'none' }}>Vite</a>
                 {` | `}
-                <a href="https://reactrouter.com/" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>React Router</a>
+                <a href="https://reactrouter.com/" target="_blank" rel="noopener noreferrer" style={{ color: '#a1a1aa', textDecoration: 'none' }}>React Router</a>
                 {` | `}
-                <a href="https://mui.com/" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>Material UI</a>
+                <a href="https://mui.com/" target="_blank" rel="noopener noreferrer" style={{ color: '#a1a1aa', textDecoration: 'none' }}>Material UI</a>
                 {` | `}
                 {/* <a href="https://ant.design/" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>Ant Design</a>
                 {` |`} */}
