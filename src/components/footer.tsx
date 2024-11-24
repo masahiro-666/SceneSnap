@@ -9,7 +9,7 @@ export const Footer: FC = (): ReactElement => {
         sx={{
           width: "100%",
           height: "auto",
-          background: "linear-gradient(to bottom, transparent, #5AFFA2)",
+          background: "linear-gradient(to bottom, transparent, #47CC8A)",
           paddingTop: "1rem",
           paddingBottom: "1rem",
           mt: 10 ,

@@ -5,6 +5,7 @@ import Signup from "../pages/signup"
 import Forgetpassword from "../pages/forgetpassword"
 import MoviesManagement from "../pages/moviesManagement"
 import Seat from "../pages/seat"
+import ImageUpload from "../test"
 
 export const router = createBrowserRouter([
     {
@@ -52,6 +53,14 @@ export const router = createBrowserRouter([
       element: (
         <div>
           <Seat/>
+        </div>
+      ),
+    },
+    {
+      path: '/imageupload',
+      element: (
+        <div>
+          <ImageUpload/>
         </div>
       ),
     },

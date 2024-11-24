@@ -61,6 +61,11 @@ function Home() {
                     )} */}
                     <div className="bg-white movies-container">
                         <Movies/>
+                        {userLoggedIn && (
+                        <button className="ml-4 gg" onClick={handleSignOut}>
+                            Sign Out
+                        </button>
+                    )}
                     </div>
                 </div>
                 <div className="max-md:hidden">
