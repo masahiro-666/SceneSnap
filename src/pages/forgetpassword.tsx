@@ -29,11 +29,11 @@ function Forgotpassword() {
   };
 
   return (
-    <div className="h-full w-full bg-[#212121]">
+    <div className="h-full w-full]">
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img alt="LOGO" src={logo} className="mx-auto h-20 w-auto" />
-          <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-white">
+          <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-black">
             Forgot your password?
           </h2>
         </div>
@@ -41,7 +41,7 @@ function Forgotpassword() {
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-white">
+              <label htmlFor="email" className="block text-sm font-medium text-black">
                 Enter your email
               </label>
               <div className="mt-2">
@@ -75,7 +75,7 @@ function Forgotpassword() {
               </button>
             </div>
 
-            <p className="mt-6 text-center text-sm text-gray-100">
+            <p className="mt-6 text-center text-sm text-gray-600">
               Remembered your password?{" "}
               <Link to="/signin">
                 <a className="font-semibold text-emerald-500 hover:text-emerald-600">
