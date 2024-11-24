@@ -76,11 +76,11 @@ function Signup() {
   };
 
   return (
-    <div className="h-full w-full bg-[#212121]">
+    <div className="h-full w-full ">
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img alt="LOGO" src={logo} className="mx-auto h-20 w-auto" />
-          <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-white">
+          <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-black">
             Sign up for a new account
           </h2>
         </div>
@@ -90,7 +90,7 @@ function Signup() {
             <div>
               <label
                 htmlFor="username"
-                className="block text-sm font-medium text-white"
+                className="block text-sm font-medium text-black"
               >
                 Username
               </label>
@@ -111,7 +111,7 @@ function Signup() {
             <div>
               <label
                 htmlFor="name"
-                className="block text-sm font-medium text-white"
+                className="block text-sm font-medium text-black"
               >
                 Name
               </label>
@@ -132,7 +132,7 @@ function Signup() {
             <div>
               <label
                 htmlFor="surname"
-                className="block text-sm font-medium text-white"
+                className="block text-sm font-medium text-black"
               >
                 Surname
               </label>
@@ -153,7 +153,7 @@ function Signup() {
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-white"
+                className="block text-sm font-medium text-black"
               >
                 Email
               </label>
@@ -174,7 +174,7 @@ function Signup() {
             <div>
               <label
                 htmlFor="phoneNumber"
-                className="block text-sm font-medium text-white"
+                className="block text-sm font-medium text-black"
               >
                 Phone Number
               </label>
@@ -195,7 +195,7 @@ function Signup() {
             <div>
               <label
                 htmlFor="password"
-                className="block text-sm font-medium text-white"
+                className="block text-sm font-medium text-black"
               >
                 Password
               </label>
@@ -223,7 +223,7 @@ function Signup() {
             <div>
               <label
                 htmlFor="confirmPassword"
-                className="block text-sm font-medium text-white"
+                className="block text-sm font-medium text-black"
               >
                 Confirm Password
               </label>
@@ -258,7 +258,7 @@ function Signup() {
               </button>
             </div>
 
-            <p className="mt-6 text-center text-sm text-gray-100">
+            <p className="mt-6 text-center text-sm text-gray-600">
               Already a member?{" "}
               <Link to="/signin">
                 <a className="font-semibold text-emerald-500 hover:text-emerald-600">

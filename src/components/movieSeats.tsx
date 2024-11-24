@@ -1,8 +1,55 @@
-import React from "react";
-import movieSeatsMap from "./movieSeatsMap";
+import React, { useState } from "react";
 import "./styles/movieSeats.css";
+import Screen from "/screen.svg";
+import SeatPremium from "/event_premium.svg";
+import SeatPrime from "/event_prime.svg";
+import SeatSelect from "/event_select.svg";
+import SeatUnavilable from "/event_unavilable.svg";
 
-function movieSeats() {
+const seatRows = [
+  { label: "J", seats: 16, type: "premium" },
+  { label: "H", seats: 16, type: "premium" },
+  { label: "G", seats: 16, type: "premium" },
+  { label: "F", seats: 16, type: "premium" },
+  { label: "E", seats: 16, type: "premium" },
+  { label: "D", seats: 16, type: "premium" },
+  { label: "C", seats: 14, type: "prime" },
+  { label: "B", seats: 14, type: "prime" },
+  { label: "A", seats: 14, type: "prime" },
+];
+
+function MovieSeats() {
+  const [selectedSeats, setSelectedSeats] = useState([]);
+  const [bookedSeats, setBookedSeats] = useState([
+    "D-5", "F-3", "A-2", "C-7",
+  ]);
+
+  const handleSeatClick = (row, seatNumber) => {
+    const seatId = `${row}-${seatNumber}`;
+    
+    if (bookedSeats.includes(seatId)) {
+      return;
+    }
+    
+    setSelectedSeats((prevSelected) =>
+      prevSelected.includes(seatId)
+        ? prevSelected.filter((seat) => seat !== seatId)
+        : [...prevSelected, seatId]
+    );
+  };
+
+  const getSeatPrice = (type) => {
+    if (type === "premium") return 100;
+    if (type === "prime") return 200;
+    return 0;
+  };
+
+  const totalPrice = selectedSeats.reduce((total, seat) => {
+    const [rowLabel] = seat.split("-");
+    const row = seatRows.find((r) => r.label === rowLabel);
+    return total + getSeatPrice(row.type);
+  }, 0);
+
   return (
     <div className="container py-12">
       <div className="grid grid-cols-4">
@@ -110,6 +157,29 @@ function movieSeats() {
             </ul>
           </div>
 
+          <div className="seatmap-wrapper py-4">
+            <div className="seatmap overflow-auto">
+              <table className="table-seatmap">
+                <tbody>
+                  <tr>
+                    {/* <td></td> */}
+                    <td colSpan={20}>
+                      <div className="screen-wrapper">
+                        <div className="screen-image relative">
+                          <img src="/screen.svg" alt="" />
+                        </div>
+                        <div className="screen-text absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-opacity-50  p-4">
+                          <span className="text-3xl font-bold">จอภาพยนตร์</span>
+                        </div>
+                        <div className="screen-text"></div>
+                      </div>
+                    </td>
+                    {/* <td></td> */}
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
         <div>02</div>
       </div>
@@ -117,4 +187,4 @@ function movieSeats() {
   );
 }
 
-export default movieSeats;
+export default MovieSeats;

@@ -85,7 +85,7 @@ function Signin() {
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
             <img alt="LOGO" src={logo} className="mx-auto h-20 w-auto" />
-            <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-white">
+            <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-black">
               Sign in to your account
             </h2>
           </div>
@@ -95,7 +95,7 @@ function Signin() {
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-sm/6 font-medium text-white"
+                  className="block text-sm/6 font-medium text-black"
                 >
                   Email
                 </label>
@@ -117,7 +117,7 @@ function Signin() {
                 <div>
                   <label
                     htmlFor="password"
-                    className="block text-sm font-medium text-white"
+                    className="block text-sm font-medium text-black"
                   >
                     Password
                   </label>
@@ -168,7 +168,7 @@ function Signin() {
 
                 <div className="flex items-center w-80">
                   <div className="flex-grow border-t border-gray-300"></div>
-                  <span className="mx-4 text-gray-100">or</span>
+                  <span className="mx-4 text-gray-600">or</span>
                   <div className="flex-grow border-t border-gray-300"></div>
                 </div>
 

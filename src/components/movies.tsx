@@ -57,6 +57,7 @@ function Movies() {
 
                     <div className="mt-6 grid grid-cols-1 gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
                     {products.map((product) => (
+                        <Link to={`/seat/${product.href}`}>
                         <div key={product.id} className="group relative">
                         <img
                             alt={product.imageAlt}
@@ -66,7 +67,7 @@ function Movies() {
                         <div className="mt-4 flex justify-between">
                             <div>
                             <h3 className="text-sm text-gray-700">
-                                <a href={product.href}>
+                                <a>
                                 <span aria-hidden="true" className="absolute inset-0" />
                                 {product.name}
                                 </a>
@@ -74,6 +75,7 @@ function Movies() {
                             </div>
                         </div>
                         </div>
+                        </Link>
                     ))}
                     </div>
                 </div>
