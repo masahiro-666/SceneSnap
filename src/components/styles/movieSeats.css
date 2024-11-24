@@ -22,7 +22,7 @@
 .screen p {
   position: absolute;
   font-size: 18px;
-  color:#ccc;
+  color: #ccc;
   /* font-weight: bold; */
 }
 
@@ -39,21 +39,11 @@ tr {
   align-items: center;
 }
 
-
 .row-label {
   font-weight: bold;
-  padding: 0 10px;
   text-align: center;
-  white-space: nowrap;
   width: 20px;
-  background: red;
-}
-
-.row-label-L {
- display: flex;
-}
-.row-label-R {
-
+  color: #ccc;
 }
 
 .seat {
@@ -102,25 +92,28 @@ tr {
   cursor: pointer;
 }
 
-.seatmap .row-id {
-  color: #c6c7c7;
-  font-weight: 700;
+/* Seat price layout adjustments */
+.seat-price-container {
+  display: flex; /* Use flexbox for centering price blocks */
+  justify-content: center; /* Center the price blocks horizontally */
+  gap: 30px; /* Space between blocks */
+  margin-bottom: 20px;
 }
 
-.seatmap .empty {
-  height: 15px;
-  width: 15px;
-  margin: 0 auto;
+.seat-price {
+  display: flex; /* Use flex for proper alignment */
+  flex-direction: column; /* Align the image and text vertically */
+  align-items: center; /* Center both horizontally and vertically */
+  justify-content: center;
+  gap: 10px; /* Space between image and text */
+  text-align: center;
 }
 
-.seatmap .button-seat {
-  padding: 0;
-  margin: 0;
-  border: none;
-  outline: none;
-  display: block;
-  width: 100%;
-  background: none;
-  position: relative;
-  min-width: 16px;
+.seat-price-img {
+  width: 60px; /* Control image size */
+}
+
+.seat-price p {
+  margin: 0; /* Ensure no margin around the text */
+  text-align: center; /* Ensure text is centered inside its container */
 }
