@@ -1,0 +1,49 @@
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+div {
+  display: block;
+  unicode-bidi: isolate;
+}
+
+.row {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.theater-info .seat-type {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  width: 100%;
+  display: table;
+  table-layout: fixed;
+}
+
+.screen-wrapper {
+  position: relative;
+}
+
+.seatmap table {
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.table-seatmap{
+  min-width: 320px;
+}
+div {
+  display: block;
+  unicode-bidi: isolate;
+}

@@ -60,6 +60,8 @@ body {
   position: relative;
 } */
 
+
+
 .box-movie-detail .movie-detail {
   padding: 35px 15px;
   color: #fff;
@@ -88,11 +90,11 @@ p {
   unicode-bidi: isolate;
 }
 
-.name {
+.main-detail .name {
   font-family: SmarnFilm Black;
   margin: 0;
   padding: 0;
-  font-size: 16px;
+  font-size: 48px;
   font-weight: 600;
 }
 

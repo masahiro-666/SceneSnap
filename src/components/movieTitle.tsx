@@ -5,7 +5,7 @@ function movieTitle() {
   return (
     <div className="container py-10">
       <div className="grid px-72">
-        <div className="movie-detail grid grid-cols-2 items-center justify-center gap-x-2">
+        <div className="movie-detail grid grid-cols-2 items-center justify-center gap-x-2 bg-white">
           <div className="poster items-end justify-end text-right content-end ">
             <img
               className="pl-32 shadow hover:shadow-sm"

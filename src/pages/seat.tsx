@@ -16,7 +16,7 @@ function seat() {
       
       <div className="page-container max-md:hidden">
         <div><Step/></div>
-        <div><MovieTitle/></div>
+        <div style={{backgroundColor: "#f5f7fb"}}><MovieTitle/></div>
         <div><MovieSeats/></div>
       </div>
       
