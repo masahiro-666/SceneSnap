@@ -1,48 +1,48 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect, Fragment, Component } from "react";
 import "../components/styles/styles.css";
-import { Link } from 'react-router-dom';
-import Movies from "../movies";
+import { Link } from "react-router-dom";
+import axios from "axios";
+
+const baseURL = "http://localhost:3306/movie/get"
 
 function moviesManagement() {
-    return (
-        <>
-            <Fragment>
-                <div className="page-container text-black">
-                    <div style={{margin:"10rem"}}>
-                        <table className="table-auto">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>NAME</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                    Movies && Movies.length > 0
-                                    ?
-                                    Movies.map((item) =>{
-                                        return(
-                                            <tr>
-                                                <td>
-                                                    {item.id}
-                                                </td>
-                                                <td>
-                                                    {item.Name}
-                                                </td>
-                                            </tr>
-                                        )
-                                    })
-                                    :
-                                    "no data available"
-                                }
-                            </tbody>
-                        </table>
-                        <h1>THIS IS MOVIES MANAGEMENT</h1>
-                    </div>
-                </div>
-            </Fragment>
-        </>
-    );
+    
+    const [data, setData] = useState([])
+    useEffect(() => {
+      axios.get(baseURL)
+      .then(res => setData(res.data))
+      .catch(err => console.log(err))
+    }, [])
+
+  return (
+    <div className="justify-center ">
+        <table>
+        <thead>
+            <tr className="gap-20">
+            <th >ID</th>
+            <th>NAME</th>
+            <th></th>
+            <th></th>
+            <th></th>
+
+            </tr>
+        </thead>
+        <tbody>
+        {/* {data.map((movie, index) =>{
+                return <tr key={index} className="gap-12">
+                    <td>{movie.movie_id}</td>
+                    <td>{movie.movie_title}</td>
+                    <td>
+                        <button className='btn btn-sm btn-info'>Read</button>
+                        <button className='btn btn-sm btn-primary mx-2'>Edit</button>
+                        <button className='btn btn-sm btn-danger'>Delete</button>
+                    </td>
+                </tr>
+                })} */}
+        </tbody>
+        </table>
+    </div>
+  );
 }
 
 export default moviesManagement;
