@@ -78,7 +78,7 @@ function MovieSeats() {
         <table className="seatmap">
           <tbody>
             {seatRows.map((row, index) => (
-              <tr key={index}>
+              <tr key={index} className="movie-seat">
                 {/* Left label column */}
                 <td className="row-label row-label-L">{row.label}</td>
 
