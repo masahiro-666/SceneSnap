@@ -13,9 +13,9 @@ const seatRows = [
   { label: "F", seats: 16, type: "premium" },
   { label: "E", seats: 16, type: "premium" },
   { label: "D", seats: 16, type: "premium" },
-  { label: "C", seats: 14, type: "prime" },
-  { label: "B", seats: 14, type: "prime" },
-  { label: "A", seats: 14, type: "prime" },
+  { label: "C", seats: 16, type: "prime" },
+  { label: "B", seats: 16, type: "prime" },
+  { label: "A", seats: 16, type: "prime" },
 ];
 
 function MovieSeats() {
@@ -39,9 +39,14 @@ function MovieSeats() {
   };
 
   const getSeatPrice = (type) => {
-    if (type === "premium") return 100;
-    if (type === "prime") return 200;
+    if (type === "premium") return 300;
+    if (type === "prime") return 600;
     return 0;
+  };
+
+  const movieDetils = {
+    title:'Moana 2',
+    urlVDO:'https://www.youtube.com/embed/CfnM5JFmvVo'
   };
 
   const totalPrice = selectedSeats.reduce((total, seat) => {
@@ -64,7 +69,6 @@ function MovieSeats() {
             <p>Event Prime</p>
             <p>600 THB</p>
           </div>
-
           
         </div>
         <div className="screen">
@@ -114,17 +118,50 @@ function MovieSeats() {
         </table>
       </div>
 
-      <div className="details-section">
-        <h2>GG</h2>
-        <hr />
-        <p>Selected Seat:</p>
-        <ul>
-          {selectedSeats.map((seat, index) => (
-            <li key={index}>{seat}</li>
-          ))}
-        </ul>
-        <p>Total: {totalPrice} THB</p>
-        <button className="proceed-button">Continue</button>
+      <div className="bg-slate-50 rounded-md px-5 w-1/4 mr-14">
+        <div className=" justify-center text-center">
+          <h2 className="mt-10 text-2xl font-extrabold">{movieDetils.title}</h2>
+          <iframe className="mt-8 mx-auto aspect-w-16 aspect-h-9 rounded-lg"
+          src={movieDetils.urlVDO}
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+          </iframe>
+        </div>
+          <div className="border-t mt-6"></div>
+          <p className="mt-6">Selected Seat:</p>
+          <div className="font-extrabold select-seat min-h-[100px]">
+            {selectedSeats.length === 0 ? (
+              <p>-</p>
+            ) : (
+              selectedSeats
+                .sort((a, b) => {
+                  const [rowA, seatA] = a.split("-");
+                  const [rowB, seatB] = b.split("-");
+
+                  // Sort by row letter first (A-Z), then by seat number (1-n)
+                  if (rowA === rowB) {
+                    return seatA - seatB; // Compare seat numbers if rows are the same
+                  }
+                  return rowA.localeCompare(rowB); // Compare row labels if rows are different
+                })
+                .map((seat, index) => (
+                  <p key={index}>{seat}</p>
+                ))
+            )}
+          </div>
+          <div className="border-t mt-6 justify-center text-center">
+            <p className="text-lg mt-6 font-bold">Total</p>
+            <p className="text-2xl mt-1 font-bold">{totalPrice} THB</p>
+            <div className="mt-6">
+                    <a
+                      href="#"
+                      className="flex items-center justify-center rounded-md border border-transparent bg-black px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-zinc-800"
+                    >
+                      Continue
+                    </a>
+            </div>
+          </div>
       </div>
     </div>
   );
