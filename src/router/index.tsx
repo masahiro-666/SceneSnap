@@ -8,6 +8,8 @@ import Seat from "../pages/seat"
 import ImageUpload from "../test"
 import AddMovie from '../pages/AddMovie'
 import EditMovie from '../pages/EditMovie'
+import Topup from '../pages/topup'
+import Payment from '../pages/payment'
 
 
 
@@ -54,7 +56,6 @@ export const router = createBrowserRouter([
         </div>
       ),
     },
-    // Updated this route to accept movieId as a dynamic parameter
     {
       path: '/seat/:movieId', 
       element: (
@@ -86,6 +87,23 @@ export const router = createBrowserRouter([
           <EditMovie/>
         </div>
       ),
-    }
+    },
+    {
+      path: '/topup',
+      element: (
+        <div>
+          <Topup/>
+        </div>
+      ),
+    },
+    {
+      path: '/payment',
+      element: (
+        <div>
+          <Payment/>
+        </div>
+      ),
+    },
+
     
 ])

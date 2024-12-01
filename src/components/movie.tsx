@@ -12,6 +12,7 @@ import Duration from "/duration.svg";
 import SeatUnavilable from "/event_unavilable.svg";
 import axios from "axios";
 import { baseURL } from "./userIDConfig";
+import { useNavigate } from "react-router-dom";
 
 const seatRows = [
   { label: "J", seats: 16, type: "premium" },
@@ -65,6 +66,7 @@ const Movie: React.FC = () => {
   const [movie, setMovie] = useState<Movie | null>(null);
   const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
   const [bookedSeats, setBookedSeats] = useState<string[]>([]);
+  const navigate = useNavigate();
 
   const { movieId } = useParams<{ movieId: string }>(); // Get movieId from the URL
 
@@ -110,7 +112,7 @@ const Movie: React.FC = () => {
   };
 
   const totalPrice = selectedSeats.reduce((total, seat) => {
-    const [rowLabel] = seat.split("-");
+    const [rowLabel] = seat;
     const row = seatRows.find((r) => r.label === rowLabel);
     return total + getSeatPrice(row?.type || "");
   }, 0);
@@ -258,12 +260,34 @@ const Movie: React.FC = () => {
             <p className="text-lg mt-6 font-bold">Total</p>
             <p className="text-2xl mt-1 font-bold">{totalPrice} THB</p>
             <div className="mt-6 mb-4">
-                    <a
-                      href="#"
-                      className="flex items-center justify-center rounded-md border border-transparent bg-black px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-zinc-800"
-                    >
-                      Continue
-                    </a>
+              {/* <a
+                href="#"
+                className={`flex items-center justify-center rounded-md border border-transparent px-6 py-3 text-base font-medium shadow-sm ${
+                  selectedSeats.length > 0 ? "bg-black text-white hover:bg-zinc-800" : "bg-gray-300 text-gray-500 cursor-default"
+                }`}
+                onClick={(e) => {
+                  if (selectedSeats.length === 0) {
+                    e.preventDefault(); // Prevent the default action if no seat is selected
+                  } else {
+                    console.log("Proceeding with selected seats:", selectedSeats); // Add your logic here
+                  }
+                }}
+              >
+                Continue
+              </a> */}
+                <button
+                  className={`flex items-center justify-center w-[260px] rounded-md border border-transparent px-6 py-3 text-base font-medium shadow-sm ${
+                    selectedSeats.length > 0 ? "bg-black text-white hover:bg-zinc-800" : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                  }`}
+                  onClick={() => {
+                    if (selectedSeats.length > 0) {
+                      navigate("/payment", { state: { movieId, selectedSeats, totalPrice } }); // Pass data to the payment page
+                    }
+                  }}
+                  disabled={selectedSeats.length === 0} // Disable button if no seats are selected
+                >
+                  Continue
+                </button>
             </div>
           </div>
       </div>
