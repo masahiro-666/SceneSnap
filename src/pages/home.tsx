@@ -33,11 +33,14 @@ function Home() {
     return (
         <>
              <div className="app-container">
-                <div className="max-md:hidden">
+                <div className="max-md:hidden z-10">
                     <Navbar />
                 </div>
-                <Ads/>  
-                <div className="page-container max-md:hidden">
+                <div className="max-md:hidden z-0">
+                    <Ads/>
+                </div>
+                
+                <div className=" max-md:hidden">
                     {/* {userLoggedIn && (
                         <div className="user-info text-white">
                         <h3 className="text-lg font-bold">User Information:</h3>

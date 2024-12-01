@@ -54,8 +54,9 @@ export const router = createBrowserRouter([
         </div>
       ),
     },
+    // Updated this route to accept movieId as a dynamic parameter
     {
-      path: '/seat',
+      path: '/seat/:movieId', 
       element: (
         <div>
           <Seat/>
