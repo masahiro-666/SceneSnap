@@ -117,7 +117,7 @@ const Movie: React.FC = () => {
     <div className="container mx-auto py-20">
       <div className="gap-8 px-6 my-20 lg:px-60">
         {/* Movie Title and Details Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 bg-white max-w-[800px] h-[200px] p-6 rounded-lg shadow-lg">
+        <div className="grid grid-cols-1 lg:grid-cols-2 bg-white max-w-[800px] h-[220px] p-6 rounded-lg shadow-lg">
           <div className="relative flex justify-center items-center">
             <img
               className="absolute top-1/2 transform -translate-y-1/2 w-50 h-auto rounded-lg shadow-lg object-cover"
@@ -133,19 +133,18 @@ const Movie: React.FC = () => {
                 {movie.movie_genre}
               </p>
               <ul className="flex flex-wrap gap-4 text-gray-600">
-                <li className="flex items-center gap-2">
+                <li className="flex items-center gap-2 h-6">
                     <img src={Duration} alt="" />
-                  {movie.movie_duration}
+                    <span className="whitespace-nowrap">{movie.movie_duration} Min</span>
                 </li>
-                <li  className="flex items-center gap-2 ml-6">
+                <li  className="flex items-center gap-2 ml-6 w-6 h-6">
                 <img src={DUB} alt="DUB" />
-                {movie.movie_dub}
+                {movie.movie_dub ? movie.movie_dub : '-'}
                 </li>
-                <li  className="flex items-center gap-2 ml-6">
+                <li  className="flex items-center gap-2 ml-6 w-6 h-6">
                 <img src={SUB} alt="SUB" />
-                {movie.movie_sub}
+                {movie.movie_sub ? movie.movie_sub : '-'}
                 </li>
-                
               </ul>
             </div>
           </div>
