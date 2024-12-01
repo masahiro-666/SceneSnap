@@ -64,7 +64,7 @@ const convertToEmbedURL = (url: string | undefined): string => {
 const Movie: React.FC = () => {
   const [movie, setMovie] = useState<Movie | null>(null);
   const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
-  const [bookedSeats, setBookedSeats] = useState<string[]>(["D-5", "F-3", "A-2", "C-7"]);
+  const [bookedSeats, setBookedSeats] = useState<string[]>([]);
 
   const { movieId } = useParams<{ movieId: string }>(); // Get movieId from the URL
 
@@ -83,8 +83,15 @@ const Movie: React.FC = () => {
     }
   }, [movieId]);
 
+  useEffect(() => {
+    if (movie?.movie_cinema_seats) {
+      setBookedSeats(movie.movie_cinema_seats.split(",")); // Assuming seats are stored as a comma-separated string
+    }
+    console.log('booking:',bookedSeats)
+  }, [movie]);
+
   const handleSeatClick = (row: string, seatNumber: number) => {
-    const seatId = `${row}-${seatNumber}`;
+    const seatId = `${row}${seatNumber}`;
     if (bookedSeats.includes(seatId)) {
       return;
     }
@@ -133,16 +140,16 @@ const Movie: React.FC = () => {
                 {movie.movie_genre}
               </p>
               <ul className="flex flex-wrap gap-4 text-gray-600">
-                <li className="flex items-center gap-2 h-6">
-                    <img src={Duration} alt="" />
+                <li className="flex items-center gap-2">
+                    <img src={Duration} alt="" className="h-6 w-6" />
                     <span className="whitespace-nowrap">{movie.movie_duration} Min</span>
                 </li>
-                <li  className="flex items-center gap-2 ml-6 w-6 h-6">
-                <img src={DUB} alt="DUB" />
+                <li  className="flex items-center gap-2 ml-4">
+                <img src={DUB} alt="DUB" className="h-6 w-6"/>
                 {movie.movie_dub ? movie.movie_dub : '-'}
                 </li>
-                <li  className="flex items-center gap-2 ml-6 w-6 h-6">
-                <img src={SUB} alt="SUB" />
+                <li  className="flex items-center gap-2 ml-4">
+                <img src={SUB} alt="SUB"className="h-6 w-6"/>
                 {movie.movie_sub ? movie.movie_sub : '-'}
                 </li>
               </ul>
@@ -176,7 +183,7 @@ const Movie: React.FC = () => {
                 <tr key={index} className="movie-seat">
                   <td className="row-label row-label-L">{row.label}</td>
                   {[...Array(row.seats)].map((_, seatIndex) => {
-                    const seatId = `${row.label}-${seatIndex + 1}`;
+                    const seatId = `${row.label}${seatIndex + 1}`;
                     const isBooked = bookedSeats.includes(seatId);
                     const isSelected = selectedSeats.includes(seatId);
 
@@ -250,7 +257,7 @@ const Movie: React.FC = () => {
           <div className="border-t mt-6 justify-center text-center">
             <p className="text-lg mt-6 font-bold">Total</p>
             <p className="text-2xl mt-1 font-bold">{totalPrice} THB</p>
-            <div className="mt-6">
+            <div className="mt-6 mb-4">
                     <a
                       href="#"
                       className="flex items-center justify-center rounded-md border border-transparent bg-black px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-zinc-800"
