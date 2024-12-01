@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './ads.css';
-import Ads1 from"../mockups/ads.png";
-import Ads2 from"../mockups/ads.png";
-import Ads3 from"../mockups/ads.png";
+import Ads1 from"../mockups/adsQ.png";
+import Ads2 from"../mockups/adsW.png";
+import Ads3 from"../mockups/adsE.png";
 
 const ads = [
     "https://shippingsea-images.s3.ap-southeast-1.amazonaws.com/ads/blackfriday.png",
