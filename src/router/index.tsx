@@ -6,6 +6,12 @@ import Forgetpassword from "../pages/forgetpassword"
 import MoviesManagement from "../pages/moviesManagement"
 import Seat from "../pages/seat"
 import ImageUpload from "../test"
+import AddMovie from '../pages/AddMovie'
+import EditMovie from '../pages/EditMovie'
+
+
+
+
 
 export const router = createBrowserRouter([
     {
@@ -64,4 +70,21 @@ export const router = createBrowserRouter([
         </div>
       ),
     },
+    {
+      path: '/movieadd',
+      element: (
+        <div>
+          <AddMovie/>
+        </div>
+      ),
+    },
+    {
+      path: '/movieedit/:id',
+      element: (
+        <div>
+          <EditMovie/>
+        </div>
+      ),
+    }
+    
 ])
