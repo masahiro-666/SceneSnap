@@ -1,96 +1,89 @@
 import React, { useEffect, useState } from 'react';
 import './ads.css';
-import Ads1 from"../mockups/adsQ.png";
-import Ads2 from"../mockups/adsW.png";
-import Ads3 from"../mockups/adsE.png";
+import Ads1 from "../mockups/adsQ.png";
+import Ads2 from "../mockups/adsW.png";
+import Ads3 from "../mockups/adsE.png";
 
 const ads = [
-    "https://shippingsea-images.s3.ap-southeast-1.amazonaws.com/ads/blackfriday.png",
-    "https://shippingsea-images.s3.ap-southeast-1.amazonaws.com/ads/limitedtime.png",
-    "https://shippingsea-images.s3.ap-southeast-1.amazonaws.com/ads/cybermonday.png"
-]
-
+  "https://shippingsea-images.s3.ap-southeast-1.amazonaws.com/ads/blackfriday.png",
+  "https://shippingsea-images.s3.ap-southeast-1.amazonaws.com/ads/limitedtime.png",
+  "https://shippingsea-images.s3.ap-southeast-1.amazonaws.com/ads/cybermonday.png"
+];
 
 function Ads() {
-    // const [slideIndex, setSlideIndex] = useState(1);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
 
-    // useEffect(() => {
-    //     showSlides(slideIndex);
-    // }, [slideIndex]);
+  // Automatically scroll slides every 5 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      handleNextSlide();
+    }, 5000);
 
-    // const plusSlides = (n: number) => {
-    //     let newIndex = slideIndex + n;
-    //     const slides = document.getElementsByClassName("mySlides");
+    return () => clearInterval(interval); // Clear interval on unmount
+  }, []);
 
-    //     if (newIndex > slides.length) {
-    //         newIndex = 1;
-    //     } else if (newIndex < 1) {
-    //         newIndex = slides.length;
-    //     }
+  const handleNextSlide = () => {
+    setIsAnimating(true);
+    setCurrentSlide((prevSlide) => (prevSlide + 1) % 3); // Cycle through slides
+  };
 
-    //     setSlideIndex(newIndex);
-    // };
+  const handlePrevSlide = () => {
+    setIsAnimating(true);
+    setCurrentSlide((prevSlide) => (prevSlide - 1 + 3) % 3); // Cycle back
+  };
 
-    // const showSlides = (n: number) => {
-    //     const slides = document.getElementsByClassName("mySlides") as HTMLCollectionOf<HTMLElement>;
-    //     const dots = document.getElementsByClassName("dot");
+  const handleDotClick = (index: number) => {
+    setIsAnimating(true);
+    setCurrentSlide(index);
+  };
 
-    //     for (let i = 0; i < slides.length; i++) {
-    //         slides[i].style.display = "none";
-    //     }
-    //     for (let i = 0; i < dots.length; i++) {
-    //         dots[i].className = dots[i].className.replace(" active", "");
-    //     }
+  return (
+    <>
+      {/* Desktop view */}
+      <div className="ads-container max-md:hidden mb-3 relative w-fit mt-0">
+        {[Ads1, Ads2, Ads3].map((ad, index) => (
+          <div
+            key={index}
+            className={`w-full my-3 flex justify-center items-center relative ${currentSlide === index ? '' : 'hidden'}`}
+          >
+            <img src={ad} alt={`Ad ${index + 1}`} />
+            <div className="prev" onClick={handlePrevSlide}>❮</div>
+            <div className="next" onClick={handleNextSlide}>❯</div>
+          </div>
+        ))}
+        <div className="dot-container max-lg:scale-75 max-lg:-mb-3">
+          {[0, 1, 2].map((index) => (
+            <span
+              key={index}
+              className={`dot ${currentSlide === index ? 'bg-white/75' : ''}`}
+              onClick={() => handleDotClick(index)}
+            ></span>
+          ))}
+        </div>
+      </div>
 
-    //     if (slides[n - 1]) slides[n - 1].style.display = "block";
-    //     if (dots[n - 1]) dots[n - 1].className += " active";
-    // };
-
-    const [currentSlide, setCurrentSlide] = useState(0);
-
-    return (
-        <>
-            <div className="ads-container max-md:hidden mb-3 relative w-fit mt-0">
-                <div className={currentSlide === 0 ? 'w-full my-3 flex justify-center items-center relative':'hidden'}>
-                    <img src={Ads1} alt="Ad 1" />
-                    <div className="prev" onClick={() => setCurrentSlide(2)}>❮</div>
-                    <div className="next" onClick={() => setCurrentSlide(1)}>❯</div>
-                </div>
-
-                <div className={currentSlide === 1 ? 'w-full my-3 flex justify-center items-center relative':'hidden'}>
-                    <img src={Ads2} alt="Ad 2" />
-                    <div className="prev" onClick={() => setCurrentSlide(0)}>❮</div>
-                    <div className="next" onClick={() => setCurrentSlide(2)}>❯</div>
-                </div>
-
-                <div className={currentSlide === 2 ? 'w-full my-3 flex justify-center items-center relative':'hidden'}>
-                    <img src={Ads3} alt="Ad 3" />
-                    <div className="prev" onClick={() => setCurrentSlide(1)}>❮</div>
-                    <div className="next" onClick={() => setCurrentSlide(0)}>❯</div>
-                </div>
-
-                <div className="dot-container max-lg:scale-75 max-lg:-mb-3">
-                    <span className={currentSlide === 0 ? 'dot bg-white/75': 'dot'} onClick={() => setCurrentSlide(0)}></span>
-                    <span className={currentSlide === 1 ? 'dot bg-white/75': 'dot'} onClick={() => setCurrentSlide(1)}></span>
-                    <span className={currentSlide === 2 ? 'dot bg-white/75': 'dot'} onClick={() => setCurrentSlide(2)}></span>
-                </div>
+      {/* Mobile view with animation */}
+      <div className="w-full overflow-hidden md:hidden snap-x snap-mandatory mb-2">
+        <div
+          className="flex transition-transform duration-500 ease-in-out"
+          style={{
+            transform: `translateX(-${currentSlide * 100}%)`,
+          }}
+        >
+          {ads.map((image, index) => (
+            <div key={index} className="flex-shrink-0 w-full ml-10">
+              <img
+                src={image}
+                alt={`Slide ${index + 1}`}
+                className="w-11/12 snap-center aspect-video rounded-3xl"
+              />
             </div>
-            <div className="w-full overflow-x-scroll md:hidden snap-x snap-mandatory mb-2">
-                <div className="flex ">
-                    <div className="flex transition-transform duration-500 " style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
-                        {ads.map((image, index) => (
-                            <div key={index} className="flex-shrink-0 w-full ml-10">
-                                <img 
-                                    src={image} alt={`Slide ${index + 1}`} 
-                                    className="w-11/12 snap-center aspect-video rounded-3xl"
-                                />
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </div>
-        </>
-    );
+          ))}
+        </div>
+      </div>
+    </>
+  );
 }
 
 export default Ads;
