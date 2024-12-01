@@ -8,6 +8,7 @@ import SeatPrime from "/event_prime.svg";
 import SeatSelect from "/event_select.svg";
 import SUB from "/SUB.svg";
 import DUB from "/DUB.svg";
+import Duration from "/duration.svg";
 import SeatUnavilable from "/event_unavilable.svg";
 import axios from "axios";
 import { baseURL } from "./userIDConfig";
@@ -133,31 +134,17 @@ const Movie: React.FC = () => {
               </p>
               <ul className="flex flex-wrap gap-4 text-gray-600">
                 <li className="flex items-center gap-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="w-6 h-6"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 1 1 18 0Z"
-                    />
-                  </svg>
+                    <img src={Duration} alt="" />
                   {movie.movie_duration}
                 </li>
-                <li  className="flex items-center gap-2">
+                <li  className="flex items-center gap-2 ml-6">
                 <img src={DUB} alt="DUB" />
                 {movie.movie_dub}
                 </li>
-                <li  className="flex items-center gap-2">
+                <li  className="flex items-center gap-2 ml-6">
                 <img src={SUB} alt="SUB" />
                 {movie.movie_sub}
                 </li>
-                
                 
               </ul>
             </div>
