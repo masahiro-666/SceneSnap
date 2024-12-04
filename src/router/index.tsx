@@ -10,8 +10,6 @@ import AddMovie from '../pages/AddMovie'
 import EditMovie from '../pages/EditMovie'
 import Topup from '../pages/topup'
 import Payment from '../pages/payment'
-import History from '../pages/history'
-import GoodJobHacker from '../pages/GoodJobHacker'
 
 
 
