@@ -3,13 +3,30 @@ import "./styles/styles.css";
 import logo from "../components/mockups/logos/logo5.png";
 import { Link, useNavigate } from "react-router-dom";
 import useUserData from "../context/authContext/userdata";
+import { doSignOut } from "../firebase/auth";
+import { useAuth } from "../context/authContext";
+
+
 function Navbar() {
   // Local states for user data and error
+  const { userLoggedIn } = useAuth();
   const [localUserData, setLocalUserData] = useState(null);
+  const navigate = useNavigate();
   const [localError, setLocalError] = useState(null);
+  
 
   // Destructure the hook's user data and error
   const { userData, error } = useUserData();
+  console.log("user data: ",userData);
+
+  const handleSignOut = async () => {
+    try {
+        await doSignOut();
+        navigate('/signin');
+    } catch (error) {
+        console.error("Error signing out: ", error);
+    }
+};
 
   // Update local state when hook's data changes
   useEffect(() => {
@@ -54,6 +71,11 @@ function Navbar() {
               <Link to={"/topup"}>
                 <p>topup</p>
               </Link>
+              {userLoggedIn && (
+                        <button className="ml-4 gg" onClick={handleSignOut}>
+                            Sign Out
+                        </button>
+                    )}
             </div>
           </div>
         </div>
