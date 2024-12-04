@@ -10,6 +10,7 @@ import AddMovie from '../pages/AddMovie'
 import EditMovie from '../pages/EditMovie'
 import Topup from '../pages/topup'
 import Payment from '../pages/payment'
+import History from '../pages/history'
 
 
 
@@ -37,6 +38,14 @@ export const router = createBrowserRouter([
       element: (
         <div>
           <Signup/>
+        </div>
+      ),
+    },
+    {
+      path: '/history',
+      element: (
+        <div>
+          <History/>
         </div>
       ),
     },
