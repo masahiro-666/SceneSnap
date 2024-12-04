@@ -36,6 +36,8 @@ function Navbar() {
     }
   }, [userData, error]); // Dependency on hook's states
 
+
+
   return (
     <>
       <div className="navbar-container bg-white shadow-md relative flex items-center justify-between px-6 py-4">
@@ -59,6 +61,7 @@ function Navbar() {
         </div>
 
         <div className="absolute left-1/2 transform -translate-x-1/2">
+        
           <Link to="/home">
             <img
               src={logo}
@@ -69,6 +72,11 @@ function Navbar() {
         </div>
 
         <div className="flex items-center space-x-6">
+        {localUserData?.role === 1 && (
+            <Link to="/moviesmanagement" className="text-gray-700 hover:text-gray-900">
+              Movie Management
+            </Link>
+          )}
           <Link to="/history" className="text-gray-700 hover:text-gray-900">
             History
           </Link>

@@ -11,6 +11,7 @@ import EditMovie from '../pages/EditMovie'
 import Topup from '../pages/topup'
 import Payment from '../pages/payment'
 import GoodJobHacker from '../pages/GoodJobHacker'
+import History from '../pages/history'
 
 
 
