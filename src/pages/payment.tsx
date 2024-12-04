@@ -65,6 +65,7 @@ const Payment: React.FC = () => {
           customer_id : userData.customer_id,
           movie_id : movieId,
           booking_seat : selectedSeats.join(),
+          booking_price : totalPrice,
         }
         console.log(values)
 
@@ -79,7 +80,7 @@ const Payment: React.FC = () => {
         if (response.data.Message === "Booking updated successfully") {
           alert("Payment successful!\nSeats: " + selectedSeats.join(", ") + "\nTotal: " + totalPrice + " THB");
 
-          navigate("/home");                                      //by bas
+          navigate("/history");                                      //by bas
         } else {
           alert("Booking failed: " + response.data.Message);
         }
@@ -92,7 +93,7 @@ const Payment: React.FC = () => {
     }                                                                          //by bas
     else{                                                                        //by bas
       alert("Payment failed! Your monkey not enough, Please try again.");    //by bas
-      navigate("/home");                               //by bas
+      navigate("/topup");                               //by bas
     }                                    //by bas
   };
 
