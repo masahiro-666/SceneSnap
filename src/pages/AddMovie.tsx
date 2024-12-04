@@ -1,9 +1,34 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/authContext";
+import useUserData from "../context/authContext/userdata";    //by bas
+import "../components/styles/movieManagement.css";
 
 function AddMovie() {
+  const { userLoggedIn } = useAuth(); //by bas
+  const { userData, error } = useUserData(); //by bas
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    if (!userLoggedIn) {
+        navigate("/signin");
+    }
+}, [userLoggedIn, navigate]);
+
+  useEffect(() => {
+    if (userData) {
+      // console.log("user data : ",Object.entries(userData));                          //by bas
+      // console.log("credit :", userData)
+      console.log(userData.role)
+      if(userData.role === 0){
+        navigate("/goodjobhacker")
+      }
+    } 
+    if (error) {
+      console.error("Error fetching user data:", error); //by bas
+    }
+  }, [userData, error]);
   const [values, setValues] = useState({
     movie_thumbnail : "",
     movie_title : "",
@@ -15,7 +40,6 @@ function AddMovie() {
     movie_sub : ""
   })
 
-  const navigate = useNavigate();
 
   const handleSubmit = (e) =>{
     console.log(values)
