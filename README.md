@@ -1,50 +1,43 @@
-# React + TypeScript + Vite
+Purpose:
+The Cinema Booking and Movie Management System is designed to streamline cinema operations, improve the booking process for customers, and provide admins with tools to manage movies, customer interactions, and bookings efficiently. The system offers a seamless way for customers to browse and book movies, while allowing administrators to manage the cinema's offerings and user data.
+Key objectives include:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+•	Automating seat bookings and movie reservations.
 
-Currently, two official plugins are available:
+•	Simplifying movie management for administrators.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+•	Enhancing customer experience by providing easy access to available movies and bookings.
+________________________________________
+Users:
 
-## Expanding the ESLint configuration
+1.	Customer:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+    o	Role: Customers can browse movies and book seats
 
-- Configure the top-level `parserOptions` property like this:
+    o	Responsibilities:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+      -	Browse available movies, view details such as title, genre, duration, and trailer.
+      -	Book seats for movies based on available showtimes.
+      -	View current and past bookings.
+2.	Administrator (Admin):
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+o	Role: Administrators manage movie listings.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+o	Responsibilities:
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+o	Add, update, and remove movie listings, including titles, genres, trailers, and ratings.
+________________________________________
+ 
+Features:
+
+1.	For Customers:
+
+o	Movie Browsing: Customers can view movie listings with comprehensive details (e.g., title, genre, trailer, rating).
+
+o	Booking Seats: Customers can reserve seats for their preferred movie by selecting available showtimes.
+
+o	Booking History: Customers can view a list of their current and past bookings, including details like movie title, showtime, and booked seats.
+
+2.	For Administrators:
+
+o	Movie Management: Admins can add, update, and delete movie listings, including details like genre, trailer, and showtimes.
