@@ -1,3 +1,5 @@
+## Scene-Snap Cinema booking and management
+
 Purpose:
 The Cinema Booking and Movie Management System is designed to streamline cinema operations, improve the booking process for customers, and provide admins with tools to manage movies, customer interactions, and bookings efficiently. The system offers a seamless way for customers to browse and book movies, while allowing administrators to manage the cinema's offerings and user data.
 Key objectives include:
@@ -41,3 +43,10 @@ o	Booking History: Customers can view a list of their current and past bookings,
 2.	For Administrators:
 
 o	Movie Management: Admins can add, update, and delete movie listings, including details like genre, trailer, and showtimes.
+
+## Member
+ 1. Kritchapol Suwanwuttiwat 1650705583
+ 2. Kittikan Khonaban 1650704271
+ 3. Tirawat Saelim 1650700535
+-----------------------------------------------------------------------------------------
+[Youtube Presentation](https://youtu.be/LHBpvh_nqkg)
